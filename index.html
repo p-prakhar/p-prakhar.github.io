@@ -20,27 +20,32 @@
       }
     }
 
-    /* Modern Styling */
+    /* Modern Styling and Space-like Animation */
     body {
-      background: linear-gradient(45deg, #E0FFFF, #F0F8FF, #E0FFFF, #F0F8FF);
-      background-size: 400% 400%;
-      animation: gradient 15s linear infinite;
+      background: #000;
+      background-image: url('https://upload.wikimedia.org/wikipedia/commons/e/e6/Starsinthesky.jpg');
+      background-size: cover;
+      background-attachment: fixed;
+      animation: twinkling 30s linear infinite;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6);
     }
 
-    @keyframes gradient {
+    @keyframes twinkling {
       0% {
-        background-position: 0% 50%;
+        background: #000;
       }
       50% {
-        background-position: 100% 50%;
+        background: url('https://upload.wikimedia.org/wikipedia/commons/e/e6/Starsinthesky.jpg');
       }
       100% {
-        background-position: 0% 50%;
+        background: #000;
       }
     }
 
     .container {
-      background: #fff;
+      background: rgba(0, 0, 0, 0.6);
       border-radius: 8px;
       box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
       padding: 30px;
@@ -50,12 +55,12 @@
 
     h1 {
       font-size: 2rem;
-      color: #333;
+      color: #fff;
     }
 
     p {
       font-size: 1.2rem;
-      color: #666;
+      color: #fff;
     }
 
     a.btn-primary {
@@ -72,7 +77,7 @@
 <body>
   <div class="container text-center animated-fade-in">
     <h1 class="display-4">My Portfolio Website is Under Construction</h1>
-    <p class="lead">Thank you for visiting my website. I am currently working on updating my website and will be back soon (hopefully) with new projects and stuff.</p>
+    <p class="lead">Thank you for visiting my website. I am currently working on updating my site and will be back soon (probably) with new projects and stuff.</p>
     <p>In the meantime, please feel free to connect with me on LinkedIn:</p>
     <a href="https://www.linkedin.com/in/p-prakhar" target="_blank" class="btn btn-primary">Connect with me on LinkedIn</a>
   </div>
