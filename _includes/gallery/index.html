@@ -1,0 +1,18 @@
+<div class="card-columns m-3 mt-5">
+  {% for gallery in site.gallery %}
+    {%- assign gallery_id    = gallery.name | slugify -%}
+    {%- assign gallery_img   = gallery.image -%}
+    {%- assign gallery_name  = gallery.name -%}
+    {%- assign gallery_desc  = gallery.description -%}
+
+    {%- if gallery.external_url -%}
+      {%- assign gallery_url = gallery.external_url -%}
+      {%- assign external    = true -%}
+    {%- else -%}
+      {%- assign gallery_url = gallery.url | relative_url -%}
+      {%- assign external    = false -%}
+    {%- endif -%}
+
+    {% include gallery/gallery-card.html %}
+  {% endfor %}
+</div>

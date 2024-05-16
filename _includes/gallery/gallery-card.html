@@ -1,0 +1,29 @@
+<div class="wow animated fadeIn" data-wow-delay=".15s">
+  <a href="#" class="gallery-card text-themed" data-gallery-id="{{ gallery_id }}">
+    {%- if gallery_img -%}
+    <img id="{{ gallery_id }}-img" class="card-img-top" src="{{ gallery_img }}" alt="{{ gallery_name }}" />
+    {%- endif -%}
+    <div class="card-body">
+      <h5 id="{{ gallery_id }}-name" class="card-title">
+        {{ gallery_name }}
+      </h5>
+      <p id="{{ gallery_id }}-desc" class="card-text">{{ gallery_desc }}</p>
+      <p id="{{ gallery_id }}-date" class="card-text">{{ gallery.date }}</p>
+      <p id="{{ gallery_id }}-location" class="card-text">{{ gallery.location }}</p>
+    </div>
+  </a>
+  <div class="gallery-modal" id="gallery-modal-{{ gallery_id }}">
+    <div class="gallery-modal-content">
+      <span class="gallery-close" data-gallery-id="{{ gallery_id }}">×</span>
+      <img id="{{ gallery_id }}-modal-img" src="{{ gallery_img }}" alt="{{ gallery_name }}">
+      <div class="gallery-caption">
+        <h5 id="{{ gallery_id }}-modal-name" class="card-title">
+          {{ gallery_name }}
+        </h5>
+        <p id="{{ gallery_id }}-modal-date" class="card-text">{{ gallery.date }}</p>
+        <p id="{{ gallery_id }}-modal-location" class="card-text">{{ gallery.location }}</p>
+        <p id="{{ gallery_id }}-modal-desc" class="card-text">{{ gallery_desc }}</p>
+      </div>
+    </div>
+  </div>
+</div>

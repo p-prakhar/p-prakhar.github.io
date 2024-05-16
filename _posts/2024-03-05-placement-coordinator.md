@@ -1,9 +1,9 @@
 ---
 layout: post
 title: What is a Placement Coordinator?
-tags: 
-# style: fill
-# color: light
+tags: Campus Placement IIT
+style: 
+color: secondary
 description: A blog post about the role of a Placement Coordinator in IITs and the responsibilities that come with it. Intended for specific audience only.
 ---
 # Roles and Responsibilities: A Guide for Aspiring Placement Coordinators

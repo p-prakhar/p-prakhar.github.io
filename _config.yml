@@ -17,6 +17,7 @@ nav_exclude:                                            # The following paths ar
   - pages/tags.html
   - pages/404.html
   - pages/index.md
+  - pages/gallery.html
   - pages/about.md
 
 
@@ -55,6 +56,9 @@ collections:
   projects:
     output: true
     permalink: /projects/:name
+  # gallery:
+  #   output: true
+  #   permalink: /gallery/:name
 
 
 ### Disqus ###
@@ -91,7 +95,11 @@ defaults:
       type: "posts"
     values:
       comments: true                                   # Set to true to enable disqus comments
-
+  # - scope:
+  #     path: ""
+  #     type: "gallery"
+  #   values:
+  #     layout: "page"
 
 ### Exclude from processing ###
 exclude:
