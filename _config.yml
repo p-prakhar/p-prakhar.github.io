@@ -1,77 +1,70 @@
 ### Site Settings ###
-title               : Prakhar :)
-description         : >-
-                      Computer Science Student | Amateur :musical_keyboard: Player | Serial Linux Persuader | Stargazer :night_with_stars: when possible
-baseurl             : ""                     # Change to empty quotes if you are hosting your site at <your-username>.github.io directly
-repository          : p-prakhar/p-prakhar.github.io  # Change to <your-username>/<your-username>.github.io (or remove it if you don't need remote projects)
-open_new_tab        : true                             # Opens external URLs in new tab (works for posts, projects and navbar only)
-
+title: Prakhar :)
+description: >-
+  MTS @ Nutanix | Amateur :musical_keyboard: Player | Serial Linux Persuader | Stargazer :night_with_stars: when possible
+baseurl: "" # Change to empty quotes if you are hosting your site at <your-username>.github.io directly
+repository: p-prakhar/p-prakhar.github.io # Change to <your-username>/<your-username>.github.io (or remove it if you don't need remote projects)
+open_new_tab: true # Opens external URLs in new tab (works for posts, projects and navbar only)
 
 ### Plugins ###
 plugins:
   - jemoji
 
-
 ### Navbar Settings ###
-nav_exclude:                                            # The following paths are excluded from navbar
+nav_exclude: # The following paths are excluded from navbar
   - pages/tags.html
   - pages/404.html
   - pages/index.md
   - pages/gallery.html
   - pages/about.md
 
-
 ### Author Info ###
 author:
-  name              : Prakhar Pandey
-  image             : assets/img/dp.jpeg
-# behance           : your_username
-# dribbble          : your_username
-  email             : 3.14prakhar@gmail.com
-# facebook          : your_username
-  github            : p-prakhar
-# gitlab            : your_username
-# instagram         : your_username
-# kaggle            : your_username
-  linkedin          : p-prakhar
-# medium            : your_username
-# soundcloud        : your_username
-# spotify           : your_username
-# stackoverflow     : your_user_id
-# tumblr            : your_username.tumblr.com
-# twitch            : your_username
-# twitter           : your_username
-# vimeo             : your_username
-# youtube           : your_channel_name
-# keybase           : your_username
-  upwork            : someuser
-
+  name: Prakhar Pandey
+  image: assets/img/dp.jpeg
+  # behance           : your_username
+  # dribbble          : your_username
+  email: 3.14prakhar@gmail.com
+  # facebook          : your_username
+  github: p-prakhar
+  # gitlab            : your_username
+  # instagram         : your_username
+  # kaggle            : your_username
+  linkedin: p-prakhar
+  # medium            : your_username
+  # soundcloud        : your_username
+  # spotify           : your_username
+  # stackoverflow     : your_user_id
+  # tumblr            : your_username.tumblr.com
+  # twitch            : your_username
+  # twitter           : your_username
+  # vimeo             : your_username
+  # youtube           : your_channel_name
+  # keybase           : your_username
+  # upwork            : someuser
 
 ### Posts ###
 permalink: /blog/:title
-
 
 ### Collections ###
 collections:
   projects:
     output: true
     permalink: /projects/:name
+
   # gallery:
   #   output: true
   #   permalink: /gallery/:name
 
-
 ### Disqus ###
 disqus:
-  shortname: your-short-name-disqus                     # Your website Shortname on disqus
-
+  shortname: your-short-name-disqus # Your website Shortname on disqus
 
 ### Analytics ###
 analytics:
-  enabled: false                                        # Set true to enable analytics
+  enabled: false # Set true to enable analytics
   google:
     tracking_id: your-google-tracking-id
-
 
 ### Buy me a coffee ###
 # See https://www.buymeacoffee.com/
@@ -79,9 +72,8 @@ buymeacoffee:
   enabled: false
   username: your_username
   color: "#007bff"
-  message: "Thank you for visiting."                    # Message to be displayed aside from the button for a few seconds.
+  message: "Thank you for visiting." # Message to be displayed aside from the button for a few seconds.
   description: "Support me on Buy me a coffee!"
-
 
 ### Defaults for collections ###
 defaults:
@@ -94,7 +86,7 @@ defaults:
       path: ""
       type: "posts"
     values:
-      comments: true                                   # Set to true to enable disqus comments
+      comments: true # Set to true to enable disqus comments
   # - scope:
   #     path: ""
   #     type: "gallery"
