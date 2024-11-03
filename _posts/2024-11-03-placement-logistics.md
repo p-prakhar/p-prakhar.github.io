@@ -99,10 +99,4 @@ graph TD
     Final1 --> Final2{Check Communication Lines}
     Final2 --> Final3{Confirm POC Positions}
     Final3 --> Ready([Ready for Company Arrival])
-
-    %% Styling
-    classDef process fill:#f9f,stroke:#333,stroke-width:2px
-    classDef check fill:#bbf,stroke:#333,stroke-width:2px
-    class Final1,Final2,Final3 check
-    class Start,Ready process
 ```
