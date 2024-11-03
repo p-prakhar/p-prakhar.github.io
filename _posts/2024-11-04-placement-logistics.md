@@ -7,7 +7,7 @@ color: secondary
 description: A blog post to help coordinators prep for the logistics side of the endgame
 ---
 
-
+```mermaid
 graph TD
     %% Main Task Categories
     Start([Begin Placement Process]) --> PreInfra[Prepare Infrastructure Checklist]
@@ -105,3 +105,4 @@ graph TD
     classDef check fill:#bbf,stroke:#333,stroke-width:2px
     class Final1,Final2,Final3 check
     class Start,Ready process
+```
