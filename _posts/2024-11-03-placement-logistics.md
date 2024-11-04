@@ -7,7 +7,7 @@ color: secondary
 description: A blog post to help coordinators prep for the logistics side of the endgame
 ---
 
-```mermaid
+<div class="mermaid">
 graph TD
     %% Main Task Categories
     Start([Begin Placement Process]) --> PreInfra[Prepare Infrastructure Checklist]
@@ -99,4 +99,4 @@ graph TD
     Final1 --> Final2{Check Communication Lines}
     Final2 --> Final3{Confirm POC Positions}
     Final3 --> Ready([Ready for Company Arrival])
-```
+</div>
