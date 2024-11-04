@@ -99,6 +99,6 @@ description: A blog post to help coordinators prep for the logistics side of the
 ---
 
 <p class="text-center">
-{% include elements/button.html link="https://www.mermaidchart.com/raw/d4f0dd41-6057-497a-96da-5cf278c252e4?theme=light&version=v0.1&format=svg" text="Task Dependency Flow Graph" %}
+{% include elements/button.html link="https://www.mermaidchart.com/raw/0af60e28-cc2e-4b4b-a24e-f479d33fb6df?theme=light&version=v0.1&format=svg" text="Task Dependency Flow Graph" %}
 </p>
 
