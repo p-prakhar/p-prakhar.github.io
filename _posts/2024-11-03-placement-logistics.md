@@ -6,6 +6,46 @@ style:
 color: secondary
 description: A blog post to help coordinators prep for the logistics side of the endgame
 ---
+
+<style>
+/* Default font size for readability */
+body {
+    font-size: 18px;
+    line-height: 1.6;
+    padding: 0 15px;
+}
+
+/* Adjust font sizes for mobile screens */
+@media (max-width: 768px) {
+    body {
+        font-size: 16px;
+        line-height: 1.5;
+    }
+    h1 {
+        font-size: 1.8em;
+    }
+    h2 {
+        font-size: 1.6em;
+    }
+    h3 {
+        font-size: 1.4em;
+    }
+}
+
+/* Style adjustments for the Mermaid chart */
+.mermaid {
+    font-size: 14px;
+    overflow-x: auto;
+    max-width: 100%;
+}
+
+@media (max-width: 480px) {
+    .mermaid {
+        font-size: 12px;
+    }
+}
+</style>
+
 <div class=mermaid>
 graph TD
     %% Main Phase Categories
