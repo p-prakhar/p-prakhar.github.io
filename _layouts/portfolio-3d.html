@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en" class="portfolio-3d h-100">
+
+{% include layouts/head.html %}
+
+<body class="portfolio-3d-body h-100 d-flex flex-column">
+
+  <!-- Loading Text -->
+  <div id="loader">Initializing System...</div>
+
+  <!-- The Canvas Wrapper -->
+  <div id="canvas-container"></div>
+
+  <!-- Navbar -->
+  <nav>
+    <a href="/" class="logo">Prakhar<span>:)</span></a>
+    <ul class="nav-links">
+      <li><a href="/projects/">Projects</a></li>
+      <li><a href="/blog/">Blog</a></li>
+    </ul>
+    <div class="hamburger">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <div class="hero-section hero-hidden" style="display: none;">
+    <div class="glass-card">
+      <div class="terminal-header">> {{ site.author.name | downcase | replace: ' ', '_' }}:~$ ./init_portfolio</div>
+
+      <!-- Profile Image -->
+      <div class="profile-image-container">
+        <img src="{{ site.author.image }}" alt="{{ site.author.name }}"
+             class="profile-image" loading="eager">
+      </div>
+
+      <h1>{{ site.author.name }}</h1>
+      <p class="hero-description">
+        {{ site.description }}
+      </p>
+      <a href="/projects/" class="btn">View Work</a>
+    </div>
+  </div>
+
+  <!-- Floating Contact Bubbles -->
+  <div class="contact-bubbles">
+    {% if site.author.email %}
+    <a href="mailto:{{ site.author.email }}" class="contact-bubble email-bubble" title="Email">
+      <i class="fas fa-envelope"></i>
+    </a>
+    {% endif %}
+
+    {% if site.author.github %}
+    <a href="https://github.com/{{ site.author.github }}" target="_blank" class="contact-bubble github-bubble" title="GitHub">
+      <i class="fab fa-github"></i>
+    </a>
+    {% endif %}
+
+    {% if site.author.linkedin %}
+    <a href="https://linkedin.com/in/{{ site.author.linkedin }}" target="_blank" class="contact-bubble linkedin-bubble" title="LinkedIn">
+      <i class="fab fa-linkedin"></i>
+    </a>
+    {% endif %}
+  </div>
+
+  <!-- Three.js Library (Stable Version) -->
+  <script src="https://unpkg.com/three@0.132.2/build/three.min.js"></script>
+
+  <script>
+    // --- WAIT FOR WINDOW LOAD ---
+    window.addEventListener('load', function() {
+
+      // Remove Loader
+      const loader = document.getElementById('loader');
+      loader.style.opacity = '0';
+      setTimeout(() => loader.remove(), 500);
+
+      // Show hero section after loader is removed
+      const heroSection = document.querySelector('.hero-section');
+      if (heroSection) {
+        setTimeout(() => {
+          heroSection.classList.remove('hero-hidden');
+          heroSection.style.display = 'block';
+          heroSection.classList.add('loaded');
+        }, 500);
+      }
+
+      initThreeJS();
+    });
+
+    function initThreeJS() {
+      const container = document.getElementById('canvas-container');
+
+      if (!container) {
+        console.error("Canvas container not found!");
+        return;
+      }
+
+      // 1. SETUP
+      const scene = new THREE.Scene();
+      // Fog matches the gradient background in CSS
+      scene.fog = new THREE.FogExp2(0x1a0b2e, 0.002);
+
+      const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+      camera.position.z = 10;
+
+      const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      renderer.setPixelRatio(window.devicePixelRatio);
+      container.appendChild(renderer.domElement);
+
+      // 2. LIGHTS (High intensity to ensure visibility)
+      const ambientLight = new THREE.AmbientLight(0xffffff, 0.8);
+      scene.add(ambientLight);
+
+      const dirLight = new THREE.DirectionalLight(0xffffff, 1);
+      dirLight.position.set(5, 10, 7);
+      scene.add(dirLight);
+
+      const purpleLight = new THREE.PointLight(0x8a2be2, 2, 20);
+      purpleLight.position.set(-5, 0, 5);
+      scene.add(purpleLight);
+
+      // 3. OBJECTS
+
+      // --- A. The Piano Spiral ---
+      const pianoGroup = new THREE.Group();
+      // Using Phong material which reflects light nicely
+      const whiteKeyMat = new THREE.MeshPhongMaterial({ color: 0xffffff });
+      const blackKeyMat = new THREE.MeshPhongMaterial({ color: 0x222222 });
+
+      for(let i=0; i<30; i++) {
+        const n = i % 12;
+        const isBlack = (n===1 || n===3 || n===6 || n===8 || n===10);
+
+        const boxGeo = new THREE.BoxGeometry(isBlack ? 0.8 : 1.2, 0.25, 3);
+        const key = new THREE.Mesh(boxGeo, isBlack ? blackKeyMat : whiteKeyMat);
+
+        // Spiral Math
+        const angle = i * 0.3;
+        const radius = 7;
+
+        key.position.set(
+          Math.cos(angle) * radius,
+          i * 0.4 - 6, // Height spread
+          Math.sin(angle) * radius
+        );
+        key.rotation.y = -angle;
+
+        if(isBlack) {
+          key.position.y += 0.15;
+          key.position.x -= Math.cos(angle)*0.5;
+          key.position.z -= Math.sin(angle)*0.5;
+        }
+
+        pianoGroup.add(key);
+      }
+      pianoGroup.position.set(-5, 0, 0);
+      pianoGroup.rotation.z = 0.2;
+      scene.add(pianoGroup);
+
+      // --- C. Floating Music Notes (Canvas Sprites) ---
+      const notes = [];
+      const symbols = ['♪', '♫'];
+
+      function createNoteSprite(text) {
+        const canvas = document.createElement('canvas');
+        canvas.width = 64;
+        canvas.height = 64;
+        const ctx = canvas.getContext('2d');
+        ctx.font = 'bold 40px Arial';
+        ctx.fillStyle = '#ffffff';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText(text, 32, 32);
+
+        const texture = new THREE.CanvasTexture(canvas);
+        const mat = new THREE.SpriteMaterial({ map: texture, transparent: true });
+        return new THREE.Sprite(mat);
+      }
+
+      for(let i=0; i<12; i++) {
+        const symbol = symbols[i % symbols.length];
+        const sprite = createNoteSprite(symbol);
+
+        sprite.position.set(
+          (Math.random() - 0.5) * 40,
+          (Math.random() - 0.5) * 20 - 8,
+          (Math.random() - 0.5) * 25
+        );
+        sprite.scale.set(0.3, 0.3, 0.3);
+
+        scene.add(sprite);
+        notes.push({
+          mesh: sprite,
+          speed: 0.003 + Math.random() * 0.004,
+          wobbleOffset: Math.random() * 10
+        });
+      }
+
+      // --- D. Stars ---
+      const starGeo = new THREE.BufferGeometry();
+      const starCount = 2000;
+      const starPos = new Float32Array(starCount * 3);
+      for(let i=0; i<starCount*3; i++) {
+        starPos[i] = (Math.random() - 0.5) * 150;
+      }
+      starGeo.setAttribute('position', new THREE.BufferAttribute(starPos, 3));
+      const starMat = new THREE.PointsMaterial({ color: 0xffffff, size: 0.15 });
+      const starSystem = new THREE.Points(starGeo, starMat);
+      scene.add(starSystem);
+
+
+      // 4. ANIMATION LOOP
+      const clock = new THREE.Clock();
+      let mouseX = 0, mouseY = 0;
+
+      document.addEventListener('mousemove', (e) => {
+        mouseX = (e.clientX - window.innerWidth/2) * 0.001;
+        mouseY = (e.clientY - window.innerHeight/2) * 0.001;
+      });
+
+      function animate() {
+        requestAnimationFrame(animate);
+        const time = clock.getElapsedTime();
+
+        // Animate Piano
+        pianoGroup.rotation.y += 0.002;
+
+        // Animate Notes
+        notes.forEach(n => {
+          n.mesh.position.y += n.speed;
+          n.mesh.position.x += Math.sin(time * 2 + n.wobbleOffset) * 0.005;
+          if(n.mesh.position.y > 10) n.mesh.position.y = -10;
+        });
+
+        // Animate Stars
+        starSystem.rotation.y += 0.0005;
+
+        // Parallax
+        scene.rotation.y += (mouseX - scene.rotation.y) * 0.05;
+        scene.rotation.x += (mouseY - scene.rotation.x) * 0.05;
+
+        renderer.render(scene, camera);
+      }
+
+      animate();
+
+      // 5. RESIZE HANDLER
+      window.addEventListener('resize', () => {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+
+        if(window.innerWidth < 768) {
+          pianoGroup.position.set(0, -5, -2);
+          pianoGroup.rotation.z = 1.57;
+        } else {
+          pianoGroup.position.set(-5, 0, 0);
+          pianoGroup.rotation.z = 0.2;
+        }
+      });
+
+      // Force initial resize calc
+      window.dispatchEvent(new Event('resize'));
+    }
+
+    // Hamburger Menu Functionality
+    document.addEventListener('DOMContentLoaded', function() {
+      const hamburger = document.querySelector('.hamburger');
+      const navLinks = document.querySelector('.nav-links');
+
+      if (hamburger && navLinks) {
+        hamburger.addEventListener('click', function() {
+          navLinks.classList.toggle('active');
+          hamburger.classList.toggle('active');
+        });
+
+        // Close menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+          link.addEventListener('click', function() {
+            navLinks.classList.remove('active');
+            hamburger.classList.remove('active');
+          });
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', function(event) {
+          if (!event.target.closest('nav')) {
+            navLinks.classList.remove('active');
+            hamburger.classList.remove('active');
+          }
+        });
+      }
+    });
+  </script>
+</body>
+</html>

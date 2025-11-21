@@ -1,6 +1,4 @@
 ---
-layout: default
+layout: portfolio-3d
 permalink: /
 ---
-
-{% include landing.html %}

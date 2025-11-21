@@ -1,0 +1,112 @@
+// Color System - Comprehensive Palette
+// Primary Colors
+$primary: #6366f1;        // Indigo
+$primary-light: #818cf8;  // Light indigo
+$primary-dark: #4f46e5;   // Dark indigo
+
+// Secondary Colors
+$secondary: #6b46c1;      // Purple (replacing bright green)
+$secondary-light: #8b5cf6;
+$secondary-dark: #5b21b6;
+
+// Accent Colors
+$accent: #06b6d4;         // Cyan
+$accent-light: #22d3ee;
+$accent-dark: #0891b2;
+
+// Neutral Colors
+$text-primary: #ffffff;
+$text-secondary: #d1d5db;
+$text-muted: #9ca3af;
+$bg-primary: #0f0f23;
+$bg-secondary: #1a1a2e;
+$bg-tertiary: #16213e;
+
+// Glass Effects
+$glass-bg: rgba(15, 15, 35, 0.8);
+$glass-border: rgba(255, 255, 255, 0.1);
+$glass-shadow: rgba(99, 102, 241, 0.1);
+
+// Semantic Colors
+$success: #10b981;
+$warning: #f59e0b;
+$error: #ef4444;
+$info: #06b6d4;
+$terminal: #00ff88;  // Classic terminal green
+
+// Gradients
+$gradient-primary: linear-gradient(135deg, $primary 0%, $accent 100%);
+$gradient-secondary: linear-gradient(135deg, $secondary 0%, $primary 100%);
+$gradient-text: linear-gradient(90deg, $text-primary 0%, $primary-light 100%);
+
+// Theme Variables
+:root {
+  // Base Colors
+  --color-primary: #{$primary};
+  --color-primary-light: #{$primary-light};
+  --color-primary-dark: #{$primary-dark};
+
+  --color-secondary: #{$secondary};
+  --color-secondary-light: #{$secondary-light};
+  --color-secondary-dark: #{$secondary-dark};
+
+  --color-accent: #{$accent};
+  --color-accent-light: #{$accent-light};
+  --color-accent-dark: #{$accent-dark};
+
+  // Text Colors
+  --color-text-primary: #{$text-primary};
+  --color-text-secondary: #{$text-secondary};
+  --color-text-muted: #{$text-muted};
+
+  // Background Colors
+  --color-bg-primary: #{$bg-primary};
+  --color-bg-secondary: #{$bg-secondary};
+  --color-bg-tertiary: #{$bg-tertiary};
+
+  // Glass Effects
+  --color-glass-bg: #{$glass-bg};
+  --color-glass-border: #{$glass-border};
+  --color-glass-shadow: #{$glass-shadow};
+
+  // Semantic Colors
+  --color-success: #{$success};
+  --color-warning: #{$warning};
+  --color-error: #{$error};
+  --color-info: #{$info};
+  --color-terminal: #{$terminal};
+
+  // Gradients
+  --gradient-primary: #{$gradient-primary};
+  --gradient-secondary: #{$gradient-secondary};
+  --gradient-text: #{$gradient-text};
+
+  // Legacy support (keeping old names for backward compatibility)
+  --c-green: #{$secondary};    // Changed from bright green to muted purple
+  --c-purple: #{$primary};     // Using primary color
+  --c-text: #{$text-primary};
+  --glass: #{$glass-bg};
+  --glass-border: #{$glass-border};
+  --animation-speed: 0.4s;
+  --animation-easing: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+// Utility Classes
+.text-gradient-primary {
+  background: var(--gradient-text);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-secondary-custom {
+  color: var(--color-text-secondary);
+}
+
+.text-muted-custom {
+  color: var(--color-text-muted);
+}
+
+.text-terminal {
+  color: var(--color-terminal);
+}

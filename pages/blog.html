@@ -1,9 +1,30 @@
 ---
-layout: default
+layout: portfolio-3d-page
 title: Blog
 weight: 2
 permalink: /blog/
 ---
 
-{% include blog/search.html %}
-{% include blog/index.html %}
+<div class="blog-header text-center mb-5">
+  <div class="terminal-header mb-3">> ls ~/blogs</div>
+  <h1 class="display-4 mb-3 text-gradient-primary" style="font-weight: 800;">Code & Thoughts</h1>
+  <p class="lead text-secondary-custom">Exploring technology, systems programming, and the intersection of code with creativity</p>
+</div>
+
+<div class="blog-search-section mb-5">
+  {% include content/blog/search.html %}
+</div>
+
+<div class="blog-posts-section">
+  <div class="row card-group">
+    {% for post in site.posts %}
+      {% include content/blog/post-card.html %}
+    {% endfor %}
+  </div>
+
+  {% if site.posts.size == 0 %}
+  <div class="text-center py-5">
+    <div style="color: #666; font-size: 1.1rem;">No posts yet. Coming soon...</div>
+  </div>
+  {% endif %}
+</div>

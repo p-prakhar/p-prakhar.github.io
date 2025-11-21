@@ -1,7 +1,8 @@
 ### Site Settings ###
 title: Prakhar :)
 description: >-
-  MTS @ Nutanix | Amateur :musical_keyboard: Player | Serial Linux Persuader | Stargazer :night_with_stars: when possible
+  MTS @ Nutanix | Systems | Music | Stars
+url: "https://p-prakhar.github.io" # The full URL of your site
 baseurl: "" # Change to empty quotes if you are hosting your site at <your-username>.github.io directly
 repository: p-prakhar/p-prakhar.github.io # Change to <your-username>/<your-username>.github.io (or remove it if you don't need remote projects)
 open_new_tab: true # Opens external URLs in new tab (works for posts, projects and navbar only)
@@ -14,8 +15,6 @@ plugins:
 nav_exclude: # The following paths are excluded from navbar
   - pages/tags.html
   - pages/404.html
-  - pages/index.md
-  - pages/gallery.html
   - pages/about.md
 
 ### Author Info ###
@@ -81,7 +80,7 @@ defaults:
       path: ""
       type: "projects"
     values:
-      layout: "page"
+      layout: "portfolio-3d-page"
   - scope:
       path: ""
       type: "posts"

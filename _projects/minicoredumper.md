@@ -26,7 +26,7 @@ The limitation of `minicoredumper` was that **it could only support cores up to 
 
 
 <p class="text-center">
-{% include elements/button.html link="https://github.com/prakhar-pandey-nutanix/minicoredumper/tree/PAX_support" text="See Fork Here" %}
+{% include components/elements/button.html link="https://github.com/prakhar-pandey-nutanix/minicoredumper/tree/PAX_support" text="See Fork Here" %}
 </p>
 
 

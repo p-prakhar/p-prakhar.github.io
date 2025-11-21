@@ -50,5 +50,5 @@ Develop an **effective, adaptable method** for land cover mapping across differe
 > The project's code and detailed results are available on GitHub. 
 
 <p class="text-center">
-{% include elements/button.html link="https://github.com/p-prakhar/remote_sensing_DL" text="View Project" %}
+{% include components/elements/button.html link="https://github.com/p-prakhar/remote_sensing_DL" text="View Project" %}
 </p>

@@ -1,3 +1,20 @@
 ---
 ---
-@import "portfolYOU";
+// Custom Fonts
+@import url('https://fonts.googleapis.com/css?family=Poppins');
+
+// Import partials from `sass_dir` (defaults to `_sass`)
+@import "colors",
+        "variables",
+        "base",
+        "blog",
+        "footer",
+        "navbar",
+        "markdown",
+        "projects",
+        "timeline",
+        "autumn",
+        "native",
+        "theme",
+        "theme-dark",
+        "portfolio-3d";

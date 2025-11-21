@@ -22,5 +22,5 @@ Implemented the following scheduling policies:
 - Enabled Lazy Memory Allocation which enhances flexibility and efficiency of memory usage.
 
 <p class="text-center">
-{% include elements/button.html link="https://github.com/p-prakhar/xv6OS" text="Source Code" %}
+{% include components/elements/button.html link="https://github.com/p-prakhar/xv6OS" text="Source Code" %}
 </p>
