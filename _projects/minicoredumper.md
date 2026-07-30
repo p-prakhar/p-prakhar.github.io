@@ -1,32 +1,32 @@
 ---
-name: "PAX Support to MiniCoreDumper"
-tools: [C, Nutanix, System Prog, Open Source]
-description: Added POSIX archive format support to minicoredumper project, enhancing minicoredumper to efficiently handle cores > 8GB. Did it as part of my intern at Nutanix.
-style: fill
-color: info
+name: "PAX Support for minicoredumper"
+order: 120
+tools:
+  - C
+  - Linux
+  - POSIX pax
+  - Open source
+external_url: "https://github.com/diamon/minicoredumper/pull/10"
+description: >-
+  Upstream POSIX pax sparse-map and extended-header support that removed the
+  legacy ustar size limit for generated core archives.
 ---
 
-# PAX Support to MiniCoreDumper
+## What is `minicoredumper`?
 
----
+`minicoredumper` is an open-source project for creating targeted minicores
+instead of writing every mapped byte of a process during a core dump.
 
-### What is `MiniCoreDumper`?
+When a process receives a signal such as a segmentation fault, a core captures
+its memory, registers, and other state for later debugging. Not every byte is
+equally useful, so a minicore can retain the information needed for diagnosis
+while staying much smaller.
 
-`MiniCoreDumper` is an open-source project aimed at creating `minicores` instead of full `cores` during a `coredump`.
+## What changed?
 
-But what exactly is a `coredump`? When a process encounters a signal like a segmentation fault, the kernel can capture a snapshot of the process's memory, register values, and other crucial information into a file, known as a `coredump`.
+The archive writer used the `ustar` format, whose field limits prevented it
+from representing sufficiently large core files. I added POSIX pax 1.0 sparse
+maps and extended headers so those files can be represented in archives that
+remain compatible with common GNU tar versions.
 
-However, not all parts of this file are equally important. For instance, when debugging later, the call trace holds greater significance than heap data. This is where `minicoredumper` comes in, enabling us to selectively extract useful data from the `coredump`.
-
----
-
-### What does this fork do?
-
-The limitation of `minicoredumper` was that **it could only support cores up to 8GB**. I have removed this limitation using the `PAX archive format` that is also compatible with all commonly used versions of `GNU tar`. **In this fork, there is no upper** limit on the core size.
-
-
-<p class="text-center">
-{% include components/elements/button.html link="https://github.com/prakhar-pandey-nutanix/minicoredumper/tree/PAX_support" text="See Fork Here" %}
-</p>
-
-
+[Read the upstream pull request](https://github.com/diamon/minicoredumper/pull/10).

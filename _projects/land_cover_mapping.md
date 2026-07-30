@@ -1,9 +1,17 @@
 ---
 name: "Land Cover Mapping with Meter-Resolution Satellite Imagery"
-tools: [Research, Deep Learning, Python, MA-UNet, Saimese Network, Remote Sensing]
-description: This DL course project attepmts improvements on land cover mapping using satellite imagery through unsupervised domain adaptation. Key enhancements include advanced loss functions, extended data augmentation, and a patching strategy for high-resolution images.
-style: fill
-color: info
+order: 70
+tools:
+  - Python
+  - Deep learning
+  - MA-UNet
+  - Siamese networks
+  - Remote sensing
+repository_url: "https://github.com/p-prakhar/remote_sensing_DL"
+description: >-
+  A deep-learning course project exploring unsupervised domain adaptation for
+  high-resolution land-cover mapping with new losses, augmentation, and image
+  patching.
 ---
 
 # Unsupervised Domain Adaptation for Land Cover Mapping
@@ -47,8 +55,5 @@ Develop an **effective, adaptable method** for land cover mapping across differe
 
 
 
-> The project's code and detailed results are available on GitHub. 
-
-<p class="text-center">
-{% include components/elements/button.html link="https://github.com/p-prakhar/remote_sensing_DL" text="View Project" %}
-</p>
+The [project code](https://github.com/p-prakhar/remote_sensing_DL) and
+experiment details are available on GitHub.

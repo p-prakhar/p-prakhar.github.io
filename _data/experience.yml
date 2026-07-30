@@ -1,0 +1,41 @@
+- company: "Nutanix"
+  role: "Member of Technical Staff, Distributed Storage"
+  period: "July 2024 — present"
+  location: "Bengaluru, India"
+  summary: >-
+    Core-data-path work on a production C++17 distributed storage engine,
+    spanning NVMe and SPDK, Linux internals, performance, and reliability.
+  highlights:
+    - >-
+      Helped scale dense NVMe nodes by improving checksum and device-discovery
+      paths after profiling exposed their cost.
+    - >-
+      Strengthened SPDK device setup and recovery, with two setup-script
+      reliability fixes contributed upstream.
+    - >-
+      Reduced storage-service startup overhead and investigated allocator and
+      toolchain behaviour on modern Linux.
+    - >-
+      Root-caused reliability and capacity incidents from logs, heap evidence,
+      profiler traces, and source code.
+    - >-
+      Contributed to storage on-call work, design and code reviews, mentoring,
+      interviews, and onboarding material.
+
+- company: "Nutanix"
+  role: "Software Engineering Intern, Distributed Storage"
+  period: "May 2023 — July 2023"
+  location: "Bengaluru, India"
+  summary: >-
+    Worked on post-mortem tooling and logging performance for the storage
+    engine.
+  highlights:
+    - >-
+      Added POSIX pax archive support to minicoredumper for large core files
+      and upstreamed the work.
+    - >-
+      Reduced a costly verbose-logging path and built a repeatable measurement
+      harness to locate its bottlenecks.
+    - >-
+      Upgraded in-tree logging and profiling dependencies and fixed C++ symbol
+      handling in captured profiles.

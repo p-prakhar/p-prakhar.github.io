@@ -1,0 +1,19 @@
+- name: "diamon/minicoredumper"
+  url: "https://github.com/diamon/minicoredumper"
+  summary: >-
+    Added POSIX pax sparse-map and extended-header support so minicoredumper can
+    emit core archives beyond the legacy ustar size limit.
+  links:
+    - label: "Pull request #10"
+      url: "https://github.com/diamon/minicoredumper/pull/10"
+
+- name: "spdk/spdk"
+  url: "https://github.com/spdk/spdk"
+  summary: >-
+    Contributed two setup-script reliability fixes covering block-device sync
+    timing and stale PCI identity cache entries.
+  links:
+    - label: "Change 28045"
+      url: "https://review.spdk.io/c/spdk/spdk/+/28045"
+    - label: "Change 28044"
+      url: "https://review.spdk.io/c/spdk/spdk/+/28044"

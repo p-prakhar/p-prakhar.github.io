@@ -1,7 +1,25 @@
 ---
-layout: portfolio-3d-page
-title: Tags
+layout: page
+section: writing
+title: "Tags"
+eyebrow: "Writing index"
+description: "Browse the notebook by subject."
 permalink: /blog/tags
 ---
 
-{% include content/blog/tags.html %}
+{% assign sorted_tags = site.tags | sort %}
+{% for tag_pair in sorted_tags %}
+  {% assign tag_name = tag_pair | first %}
+  {% assign tag_posts = tag_pair | last %}
+  <section id="{{ tag_name | slugify }}" class="tag-group">
+    <h2>{{ tag_name }}</h2>
+    <ul>
+      {% for post in tag_posts %}
+        <li>
+          <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+          <span class="tag-group__date">{{ post.date | date: "%Y" }}</span>
+        </li>
+      {% endfor %}
+    </ul>
+  </section>
+{% endfor %}

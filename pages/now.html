@@ -1,0 +1,65 @@
+---
+layout: page
+section: now
+title: "Now"
+eyebrow: "Short updates"
+description: >-
+  What I am working on, noticing, reading, and carrying home from the road.
+permalink: /now/
+---
+
+{% assign updates = site.updates | where_exp: "update", "update.published != false" | sort: "date" | reverse %}
+{% assign current = updates | first %}
+{% assign timeline = site.data.milestones | concat: site.posts | concat: updates | sort: "timeline_sort" | reverse %}
+
+{% if current %}
+  <section class="current-update" aria-labelledby="current-update-title">
+    <p class="eyebrow">Current</p>
+    <h2 id="current-update-title">
+      <a href="{{ current.url | relative_url }}">{{ current.title }}</a>
+    </h2>
+    <p class="post-meta">
+      <time datetime="{{ current.date | date_to_xmlschema }}">{{ current.date | date: "%-d %B %Y" }}</time>
+      {% if current.location %}
+        <span aria-hidden="true">·</span>
+        <span>{{ current.location }}</span>
+      {% endif %}
+    </p>
+    <div>{{ current.content }}</div>
+  </section>
+{% endif %}
+
+<section class="section" aria-labelledby="all-updates-title">
+  <div class="section-heading">
+    <h2 id="all-updates-title">Timeline</h2>
+  </div>
+  <div class="now-list">
+    {% for event in timeline %}
+      <article class="now-entry">
+        <time datetime="{{ event.date | date_to_xmlschema }}">
+          {% if event.display_date %}{{ event.display_date }}{% else %}{{ event.date | date: "%b %Y" }}{% endif %}
+        </time>
+        <div>
+          {% if event.timeline_kind == "writing" %}
+            <p class="eyebrow">Published</p>
+          {% elsif event.timeline_kind == "milestone" %}
+            <p class="eyebrow">Milestone</p>
+          {% else %}
+            <p class="eyebrow">Update</p>
+          {% endif %}
+          <h3><a href="{{ event.url | relative_url }}">{{ event.title }}</a></h3>
+          {% if event.timeline_kind == "update" %}
+            <p>{{ event.content | strip_html | strip_newlines | truncatewords: 34 }}</p>
+          {% else %}
+            <p>{{ event.description }}</p>
+          {% endif %}
+          {% if event.tags and event.tags.size > 0 %}
+            <ul class="tag-list" aria-label="Timeline tags">
+              {% for tag in event.tags %}<li>{{ tag }}</li>{% endfor %}
+            </ul>
+          {% endif %}
+        </div>
+      </article>
+    {% endfor %}
+  </div>
+</section>

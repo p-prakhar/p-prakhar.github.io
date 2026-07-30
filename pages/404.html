@@ -1,55 +1,15 @@
 ---
-layout: portfolio-3d-page
-title: 404 - Page Not Found
+layout: page
+title: "This star is not on the map"
+eyebrow: "404"
+description: "The page may have moved, or the address may have taken a wrong turn."
 permalink: /404.html
 ---
 
-<div class="text-center">
-  <div class="terminal-header mb-4">> system_error: page_not_found</div>
-
-  <h1 class="display-4 mb-4" style="color: var(--c-green); font-family: 'JetBrains Mono', monospace;">
-    404: Lost in the Void
-  </h1>
-
-  <p class="lead mb-4" style="color: #ddd;">
-    The page you're looking for has drifted into the digital abyss.
-    Even our algorithms couldn't find it in this vast codebase.
-  </p>
-
-  <div class="mb-4">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 200" width="300" height="150">
-      <defs>
-        <linearGradient id="circuit" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" style="stop-color:var(--c-green);stop-opacity:1" />
-          <stop offset="50%" style="stop-color:var(--c-purple);stop-opacity:1" />
-          <stop offset="100%" style="stop-color:var(--c-green);stop-opacity:1" />
-        </linearGradient>
-      </defs>
-
-      <!-- Circuit-like paths -->
-      <path d="M50,100 L100,100 L100,50 L150,50 L150,150 L200,150 L200,100 L250,100 L250,75 L300,75 L300,125 L350,125"
-            stroke="url(#circuit)" stroke-width="2" fill="none" opacity="0.7">
-        <animate attributeName="stroke-dasharray" values="0,1000;1000,0" dur="3s" repeatCount="indefinite"/>
-      </path>
-
-      <!-- Floating nodes -->
-      <circle cx="100" cy="100" r="3" fill="var(--c-green)">
-        <animate attributeName="opacity" values="0.3;1;0.3" dur="2s" repeatCount="indefinite"/>
-      </circle>
-      <circle cx="200" cy="100" r="3" fill="var(--c-purple)">
-        <animate attributeName="opacity" values="1;0.3;1" dur="2.5s" repeatCount="indefinite"/>
-      </circle>
-      <circle cx="300" cy="75" r="3" fill="var(--c-green)">
-        <animate attributeName="opacity" values="0.3;1;0.3" dur="1.8s" repeatCount="indefinite"/>
-      </circle>
-    </svg>
-  </div>
-
-  <a href="/" class="btn" style="background: var(--c-purple); color: white; padding: 12px 24px; text-decoration: none; border-radius: 4px; font-weight: 600; transition: 0.3s;">
-    Return to Reality
-  </a>
-
-  <div class="mt-4" style="font-family: 'JetBrains Mono', monospace; color: #666; font-size: 0.9rem;">
-    Error Code: 0x404 | System: Portfolio Matrix | Status: Nominal
-  </div>
+<div class="lost-stars" aria-hidden="true">
+  <span>✦</span><span>·</span><span>✧</span><span>·</span><span>✦</span>
 </div>
+
+Try the [home page]({{ '/' | relative_url }}), browse
+[writing]({{ '/writing/' | relative_url }}), or see what is happening
+[now]({{ '/now/' | relative_url }}).

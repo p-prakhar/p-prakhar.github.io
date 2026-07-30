@@ -447,6 +447,10 @@
   color: var(--muted);
 }
 
+.project-row__print-link {
+  display: none;
+}
+
 [hidden] {
   display: none !important;
 }

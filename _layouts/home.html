@@ -2,5 +2,72 @@
 layout: default
 ---
 <div class="home shell-width">
-  {{ content }}
+  <section class="home-intro" aria-labelledby="home-title">
+    <div class="home-intro__copy">
+      <p class="eyebrow">Systems · stories · small observations</p>
+      <h1 id="home-title">
+        I build systems, write what I <em>notice.</em>, and keep a little room
+        for music.
+      </h1>
+      <p class="home-intro__lede">{{ site.data.profile.headline }}</p>
+      <div class="home-intro__links">
+        <a href="{{ '/writing/' | relative_url }}">Read the writing</a>
+        <a href="{{ '/work/' | relative_url }}">See the work</a>
+      </div>
+    </div>
+    {% include star-note.html %}
+  </section>
+
+  {% if content != "" %}
+    <div class="prose home-note">{{ content }}</div>
+  {% endif %}
+
+  <section class="section" aria-labelledby="latest-writing">
+    <div class="section-heading">
+      <h2 id="latest-writing">Latest writing</h2>
+      <a href="{{ '/writing/' | relative_url }}">All writing →</a>
+    </div>
+    <div class="writing-list">
+      {% for post in site.posts limit: 3 %}
+        {% include article-row.html item=post %}
+      {% else %}
+        <p class="empty-note">The notebook is open. The first new piece is on its way.</p>
+      {% endfor %}
+    </div>
+  </section>
+
+  {% assign published_updates = site.updates | where_exp: "update", "update.published != false" | sort: "date" | reverse %}
+  {% assign current_update = published_updates | first %}
+  {% if current_update %}
+    <section class="section now-preview" aria-labelledby="now-preview-title">
+      <div class="section-heading">
+        <h2 id="now-preview-title">Now</h2>
+        <a href="{{ '/now/' | relative_url }}">The timeline →</a>
+      </div>
+      <article class="now-card">
+        <p class="eyebrow">{{ current_update.date | date: "%B %Y" }}</p>
+        <h3><a href="{{ current_update.url | relative_url }}">{{ current_update.title }}</a></h3>
+        <div class="now-card__body">{{ current_update.content }}</div>
+      </article>
+    </section>
+  {% endif %}
+
+  {% assign selected_projects = site.projects | sort: "order" %}
+  <section class="section" aria-labelledby="selected-work">
+    <div class="section-heading">
+      <h2 id="selected-work">Selected work</h2>
+      <a href="{{ '/work/#projects' | relative_url }}">Complete work →</a>
+    </div>
+    <div class="project-list">
+      {% for project in selected_projects limit: 3 %}
+        {% include project-row.html project=project index=forloop.index %}
+      {% endfor %}
+    </div>
+  </section>
+
+  {% if site.data.music and site.data.music.size > 0 %}
+    <section class="section home-music" aria-label="Current music favourite">
+      {% include daily-music.html %}
+    </section>
+  {% endif %}
 </div>

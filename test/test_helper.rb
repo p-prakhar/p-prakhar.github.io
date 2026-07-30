@@ -25,7 +25,7 @@ module SiteTestSupport
 
   def front_matter(path)
     source = File.read(path)
-    match = source.match(/\A---\s*\n(.*?)\n---\s*\n/m)
+    match = source.match(/\A---[ \t]*\n(.*?)\n---[ \t]*(?:\n|\z)/m)
     raise "Missing front matter: #{path}" unless match
 
     YAML.safe_load(match[1], permitted_classes: [Date, Time], aliases: true) || {}

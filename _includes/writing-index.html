@@ -1,0 +1,35 @@
+<ul class="filter-list" aria-label="Filter writing by category">
+  <li>
+    <button class="filter-button" type="button" data-writing-filter="all" aria-pressed="true">
+      All
+    </button>
+  </li>
+  <li>
+    <button class="filter-button" type="button" data-writing-filter="tech" aria-pressed="false">
+      Tech
+    </button>
+  </li>
+  <li>
+    <button class="filter-button" type="button" data-writing-filter="travel" aria-pressed="false">
+      Travel
+    </button>
+  </li>
+  <li>
+    <button class="filter-button" type="button" data-writing-filter="life" aria-pressed="false">
+      Life
+    </button>
+  </li>
+  <li>
+    <button class="filter-button" type="button" data-writing-filter="essay" aria-pressed="false">
+      Essays
+    </button>
+  </li>
+</ul>
+
+<div class="writing-list" aria-live="polite">
+  {% for post in site.posts %}
+    {% include article-row.html item=post %}
+  {% else %}
+    <p class="empty-note">No writing yet.</p>
+  {% endfor %}
+</div>

@@ -1,0 +1,7 @@
+headline: "Systems engineer working close to storage, Linux, and performance."
+summary: >-
+  I work on Nutanix's Stargate userspace storage engine, primarily in C++17
+  across NVMe and SPDK, reliability, memory allocation, performance analysis,
+  and Linux internals. I enjoy turning profiler traces and production evidence
+  into simpler, faster systems.
+location: "Bengaluru, India"

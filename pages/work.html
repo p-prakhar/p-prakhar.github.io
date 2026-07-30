@@ -1,0 +1,140 @@
+---
+layout: page
+section: work
+title: "Work"
+eyebrow: "Selected history"
+description: >-
+  Storage systems, open-source contributions, projects, and the path that led
+  me here.
+permalink: /work/
+---
+
+<div class="work-actions">
+  <button class="filter-button" type="button" data-print hidden>Print or save as PDF</button>
+</div>
+
+<nav aria-label="Work page sections">
+  <ul class="jump-links">
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#open-source">Open source</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#honors">Honors</a></li>
+    <li><a href="#leadership">Leadership</a></li>
+    <li><a href="#coursework">Coursework</a></li>
+  </ul>
+</nav>
+
+<section id="experience" class="work-section">
+  <div class="section-heading"><h2>Experience</h2></div>
+  {% for job in site.data.experience %}
+    <article class="work-entry">
+      <div>
+        <p class="work-entry__period">{{ job.period }}</p>
+        <p class="work-entry__location">{{ job.location }}</p>
+      </div>
+      <div>
+        <h3>{{ job.role }}</h3>
+        <p><strong>{{ job.company }}</strong></p>
+        <p class="work-entry__summary">{{ job.summary }}</p>
+        <ul>
+          {% for highlight in job.highlights %}<li>{{ highlight }}</li>{% endfor %}
+        </ul>
+      </div>
+    </article>
+  {% endfor %}
+</section>
+
+<section id="open-source" class="work-section">
+  <div class="section-heading"><h2>Open source</h2></div>
+  {% for contribution in site.data.open_source %}
+    <article class="work-entry work-entry--single">
+      <div>
+        <p class="work-entry__period">Upstream</p>
+      </div>
+      <div>
+        <h3><a href="{{ contribution.url }}" rel="noopener noreferrer">{{ contribution.name }}</a></h3>
+        <p class="work-entry__summary">{{ contribution.summary }}</p>
+        <ul class="inline-links" aria-label="{{ contribution.name }} contribution links">
+          {% for link in contribution.links %}
+            <li><a href="{{ link.url }}" rel="noopener noreferrer">{{ link.label }}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+    </article>
+  {% endfor %}
+</section>
+
+{% assign ordered_projects = site.projects | sort: "order" %}
+<section id="projects" class="work-section">
+  <div class="section-heading"><h2>Projects</h2></div>
+  <div class="project-list">
+    {% for project in ordered_projects %}
+      {% include project-row.html project=project index=forloop.index %}
+    {% endfor %}
+  </div>
+</section>
+
+<section id="skills" class="work-section">
+  <div class="section-heading"><h2>Skills</h2></div>
+  <div class="skill-groups">
+    {% for skill in site.data.skills %}
+      <article class="skill-group">
+        <h3>{{ skill.group }}</h3>
+        <p>{{ skill.items | join: " · " }}</p>
+      </article>
+    {% endfor %}
+  </div>
+</section>
+
+<section id="education" class="work-section">
+  <div class="section-heading"><h2>Education</h2></div>
+  {% for school in site.data.education.schools %}
+    <article class="work-entry">
+      <div>
+        <p class="work-entry__period">{{ school.period }}</p>
+        <p class="work-entry__location">{{ school.location }}</p>
+      </div>
+      <div>
+        <h3>{{ school.institution }}</h3>
+        <p>{{ school.degree }}</p>
+        <p class="work-entry__summary">{{ school.result }}</p>
+      </div>
+    </article>
+  {% endfor %}
+</section>
+
+<section id="honors" class="work-section">
+  <div class="section-heading"><h2>Honors</h2></div>
+  {% for honor in site.data.honors %}
+    <article class="work-entry">
+      <p class="work-entry__period">{{ honor.period }}</p>
+      <div>
+        <h3>{{ honor.title }}</h3>
+        <p class="work-entry__summary">{{ honor.description }}</p>
+      </div>
+    </article>
+  {% endfor %}
+</section>
+
+<section id="leadership" class="work-section">
+  <div class="section-heading"><h2>Leadership</h2></div>
+  {% for item in site.data.leadership %}
+    <article class="work-entry">
+      <p class="work-entry__period">{{ item.period }}</p>
+      <div>
+        <h3>{{ item.role }}</h3>
+        <p><strong>{{ item.organization }}</strong></p>
+        <p class="work-entry__summary">{{ item.summary }}</p>
+      </div>
+    </article>
+  {% endfor %}
+</section>
+
+<section id="coursework" class="work-section">
+  <div class="section-heading"><h2>Coursework</h2></div>
+  <ul class="course-list">
+    {% for course in site.data.education.coursework %}<li>{{ course }}</li>{% endfor %}
+  </ul>
+</section>

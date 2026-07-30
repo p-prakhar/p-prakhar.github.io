@@ -6,6 +6,13 @@
 {% else %}
   {% assign project_url = project.url | relative_url %}
 {% endif %}
+{% if project.repository_url %}
+  {% assign project_print_link = "Source code" %}
+{% elsif project.external_url %}
+  {% assign project_print_link = "Project link" %}
+{% else %}
+  {% assign project_print_link = "Case study" %}
+{% endif %}
 <article class="project-row">
   {% if project.image %}
     <img class="project-row__image" src="{{ project.image | relative_url }}" alt="" loading="lazy">
@@ -25,6 +32,11 @@
         {% endfor %}
       </ul>
     {% endif %}
+    <p class="project-row__print-link">
+      <a href="{{ project_url }}"{% if project_is_external %} rel="noopener noreferrer"{% endif %}>
+        {{ project_print_link }} ↗
+      </a>
+    </p>
   </div>
   <span class="project-row__arrow" aria-hidden="true">↗</span>
 </article>

@@ -1,6 +1,13 @@
+@page {
+  size: A4;
+  margin: 7mm 9mm;
+  background: #ffffff;
+}
+
 @media print {
   :root,
   [data-theme="dark"] {
+    color-scheme: light;
     --background: #ffffff;
     --surface: #ffffff;
     --text: #111111;
@@ -9,9 +16,21 @@
     --accent: #111111;
   }
 
+  html,
   body {
-    font-size: 10.5pt;
-    line-height: 1.45;
+    color: #111111 !important;
+    background: #ffffff !important;
+  }
+
+  body {
+    font-size: 9.5pt;
+    line-height: 1.35;
+  }
+
+  html,
+  body,
+  .site-main {
+    min-height: 0;
   }
 
   .site-header,
@@ -27,6 +46,7 @@
 
   .site-main {
     padding: 0;
+    background: #ffffff !important;
   }
 
   .shell-width,
@@ -34,19 +54,159 @@
   .prose {
     width: 100%;
     max-width: none;
+    margin: 0;
   }
 
   .page-intro {
-    margin-bottom: 1.5rem;
+    margin-bottom: 5mm;
   }
 
   .page-intro h1 {
-    font-size: 28pt;
+    margin-bottom: 1mm;
+    font-size: 20pt;
+    letter-spacing: -0.02em;
   }
 
-  .work-section,
+  .page-intro__description {
+    margin: 0;
+    font-size: 9pt;
+  }
+
+  .eyebrow {
+    margin-bottom: 1mm;
+    font-size: 6.5pt;
+  }
+
+  .page-shell--work {
+    font-size: 8pt;
+    line-height: 1.2;
+  }
+
+  .page-shell--work .page-intro {
+    margin-bottom: 2mm;
+  }
+
+  .page-shell--work .page-intro h1 {
+    font-size: 17pt;
+  }
+
+  .page-shell--work .page-intro__description {
+    font-size: 8pt;
+  }
+
+  .page-shell--work .work-actions {
+    display: none;
+  }
+
+  .page-shell--work .work-section {
+    padding-top: 1.3mm;
+    break-inside: auto;
+  }
+
+  .page-shell--work .section-heading {
+    margin-bottom: 0.5mm;
+    padding-bottom: 0.3mm;
+    border-bottom: 0.4pt solid #888888;
+  }
+
+  .page-shell--work .section-heading h2 {
+    font-size: 10.5pt;
+    letter-spacing: 0;
+  }
+
+  .page-shell--work .work-entry {
+    grid-template-columns: 7rem minmax(0, 1fr);
+    gap: 2mm;
+    padding-block: 0.8mm;
+  }
+
+  .page-shell--work .work-entry h3,
+  .page-shell--work .project-row h3 {
+    margin: 0 0 0.3mm;
+    font-size: 8.4pt;
+  }
+
+  .page-shell--work p {
+    margin-bottom: 0.35mm;
+  }
+
+  .page-shell--work ul {
+    margin-block: 0.3mm;
+  }
+
+  .page-shell--work li + li {
+    margin-top: 0.15mm;
+  }
+
+  .page-shell--work .project-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0 4mm;
+    border: 0;
+  }
+
+  .page-shell--work .project-row {
+    display: block;
+    padding-block: 1mm;
+    break-inside: avoid;
+  }
+
+  .page-shell--work .project-row__number,
+  .page-shell--work .project-row__arrow {
+    display: none;
+  }
+
+  .page-shell--work .project-row__body > p:not(.project-row__number) {
+    margin-bottom: 0.5mm;
+    font-size: 7pt;
+    line-height: 1.18;
+  }
+
+  .page-shell--work .project-row .tag-list {
+    display: flex;
+    gap: 1mm;
+    margin-block: 0.4mm;
+  }
+
+  .page-shell--work .project-row .tag-list li {
+    padding: 0;
+    border: 0;
+    font-size: 6.5pt;
+  }
+
+  .page-shell--work .project-row__print-link {
+    display: block;
+    font-family: var(--font-sans);
+    font-size: 6.5pt;
+  }
+
+  .page-shell--work .skill-groups {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1mm;
+  }
+
+  .page-shell--work .skill-group {
+    padding: 1mm;
+  }
+
+  .page-shell--work .skill-group h3 {
+    margin-bottom: 0.3mm;
+    font-size: 7.5pt;
+  }
+
+  .page-shell--work .skill-group p,
+  .page-shell--work .work-entry__period,
+  .page-shell--work .work-entry__location {
+    font-size: 7pt;
+  }
+
+  .page-shell--work .course-list {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.4mm 2mm;
+    font-size: 7pt;
+  }
+
   .work-entry,
-  .project-row,
   .skill-group {
     break-inside: avoid;
   }
@@ -54,13 +214,5 @@
   a {
     color: inherit;
     text-decoration: none;
-  }
-
-  a[href^="http"]::after {
-    content: " (" attr(href) ")";
-    color: #555555;
-    font-family: var(--font-sans);
-    font-size: 8pt;
-    overflow-wrap: anywhere;
   }
 }

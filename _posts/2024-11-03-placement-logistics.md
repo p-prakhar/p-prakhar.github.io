@@ -1,9 +1,12 @@
 ---
 layout: post
 title: Placement Logistics Prep?
-tags: Campus Placement IIT
-style: 
-color: secondary
+category: life
+timeline_kind: writing
+timeline_sort: "2024-11-03"
+tags:
+  - campus
+  - placements
 description: A blog post to help coordinators prep for the logistics side of the endgame
 ---
 

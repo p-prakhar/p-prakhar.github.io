@@ -114,6 +114,88 @@
   border-bottom: 1px solid var(--line);
 }
 
+.home-intro {
+  display: grid;
+  gap: 2rem;
+  align-items: center;
+  min-height: 70vh;
+}
+
+.home-intro h1 {
+  max-width: 13ch;
+  margin-bottom: 1.4rem;
+  font-size: clamp(2.75rem, 8vw, 6.75rem);
+  letter-spacing: -0.055em;
+}
+
+.home-intro h1 em {
+  color: var(--accent);
+  font-family: var(--font-accent);
+  font-weight: 400;
+}
+
+.home-intro__lede {
+  max-width: 38rem;
+  color: var(--muted);
+  font-size: clamp(1.05rem, 2vw, 1.3rem);
+}
+
+.home-intro__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+}
+
+.home-note {
+  margin-top: 2rem;
+}
+
+.empty-note {
+  padding-block: 1.5rem;
+  color: var(--muted);
+  font-style: italic;
+}
+
+.now-card,
+.current-update {
+  padding: clamp(1.25rem, 4vw, 2rem);
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--accent);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+.now-card h3,
+.prose .current-update h2 {
+  margin: 0 0 0.75rem;
+}
+
+.now-card h3 a,
+.current-update h2 a {
+  color: var(--text);
+  text-decoration: none;
+}
+
+.now-card__body > :last-child,
+.current-update > div > :last-child {
+  margin-bottom: 0;
+}
+
+.page-shell--writing .prose,
+.page-shell--now .prose,
+.page-shell--work .prose {
+  width: 100%;
+}
+
+.prose .filter-list,
+.prose .jump-links,
+.prose .tag-list,
+.prose .inline-links {
+  padding-left: 0;
+}
+
 .now-entry {
   position: relative;
   display: grid;
@@ -141,12 +223,30 @@
 
 .now-entry h2,
 .now-entry h3 {
+  margin-top: 0;
   margin-bottom: 0.35rem;
 }
 
+.current-update {
+  margin-bottom: clamp(3rem, 8vw, 5rem);
+}
+
+.current-update .post-meta {
+  margin-bottom: 1rem;
+}
+
 .work-section {
-  padding-top: 1rem;
+  padding-top: 3rem;
   scroll-margin-top: 2rem;
+}
+
+.prose .work-section h2 {
+  margin: 0;
+}
+
+.work-actions {
+  min-height: 2.75rem;
+  margin-bottom: 1rem;
 }
 
 .work-entry {
@@ -158,13 +258,29 @@
 
 .work-entry__period,
 .work-entry__location {
+  margin-bottom: 0.2rem;
   color: var(--muted);
   font-family: var(--font-sans);
   font-size: 0.75rem;
 }
 
+.prose .work-entry h3,
+.prose .project-row h3 {
+  margin-top: 0;
+}
+
 .work-entry__summary {
   color: var(--muted);
+}
+
+.inline-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin-bottom: 0;
+  list-style: none;
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
 }
 
 .skill-groups {
@@ -190,7 +306,61 @@
   font-size: 0.9rem;
 }
 
+.course-list {
+  display: grid;
+  gap: 0.55rem 2rem;
+  padding: 0;
+  list-style: none;
+  color: var(--muted);
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+}
+
+.tag-group {
+  padding-block: 1.5rem;
+  border-top: 1px solid var(--line);
+}
+
+.prose .tag-group h2 {
+  margin: 0 0 0.75rem;
+}
+
+.tag-group ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.tag-group li {
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+}
+
+.tag-group__date {
+  color: var(--muted);
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+}
+
+.lost-stars {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  color: var(--accent);
+  font-size: clamp(1.25rem, 4vw, 2rem);
+  letter-spacing: 0.2em;
+}
+
 @media (min-width: 48rem) {
+  .home-intro {
+    grid-template-columns: minmax(0, 1.45fr) minmax(15rem, 0.55fr);
+  }
+
+  .home-intro .star-note-wrap {
+    border: 0;
+  }
+
   .now-entry,
   .work-entry {
     grid-template-columns: 9rem minmax(0, 1fr);
@@ -202,6 +372,10 @@
   }
 
   .skill-groups {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .course-list {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }

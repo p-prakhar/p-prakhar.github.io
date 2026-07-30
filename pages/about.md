@@ -1,21 +1,33 @@
 ---
-layout: portfolio-3d-page
-title: About
+layout: page
+section: about
+title: "About"
+eyebrow: "A little context"
+description: "Systems engineer, curious traveller, occasional pianist."
 permalink: /about/
-weight: 3
 ---
 
-<div class="page-header text-center mb-5">
-  <div class="terminal-header mb-3">> whoami</div>
-  <h1 class="display-4 mb-3 text-gradient-primary" style="font-weight: 800;">About Me</h1>
-  <p class="lead text-secondary-custom">A passionate developer exploring the intersection of technology and creativity</p>
-</div>
+I am Prakhar, a systems engineer in Bengaluru. I work on Nutanix's distributed
+storage engine, close to C++, Linux, NVMe, performance profiles, and the
+uncomfortably interesting failures that appear where software meets hardware.
 
-Hi I am **{{ site.author.name }}** :wave:,
+Before that, I studied Computer Science at IIT Guwahati. My bachelor's thesis
+explored lazy random walks on monotone subsets of hypercubes; course projects
+took me through operating systems, compilers, shells, machine learning, and a
+brief detour into blockchains.
 
-I am currently a final year student at **[IIT Guwahati](www.iitg.ac.in)** majoring in Computer Science. I am passionate about technology and am specially interested in **Blockchain** and **Systems Programming**. I am currently looking for some good opportunities to contribute in the open source community. I had interned at **[Nutanix](www.nutanix.com)** as Intern, MTS (Member of Technical Staff) and am currently doing my B.Tech Thesis Project under the guidance of **[Dr. Benny George K](https://www.iitg.ac.in/ben/)** at **[IIT Guwahati](www.iitg.ac.in)** in the field of **Random Walk on Hypercubes Under Monotone Censoring**.
+## What belongs here
 
-{% include content/about/skills.html title="Programming Skills" source=site.data.programming-skills %}
-{% include content/about/skills.html title="Tools" source=site.data.tools %}
+This site is where I want to keep the things that do not fit in a commit
+message: technical notes I wish I had earlier, travel stories, ordinary life
+updates, and essays written while an idea is still becoming clear.
 
-{% include content/about/timeline.html %}
+Music is the other recurring thread. I play a little piano, keep changing the
+list of songs I am fond of, and tend to look up when there is a clear night
+sky. Those details explain a few of the quieter oddities around this site.
+
+## Say hello
+
+Email me at [3.14prakhar@gmail.com](mailto:3.14prakhar@gmail.com), browse my
+work on [GitHub](https://github.com/p-prakhar), or find me on
+[LinkedIn](https://www.linkedin.com/in/p-prakhar/).

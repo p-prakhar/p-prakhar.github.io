@@ -1,4 +1,4 @@
 ---
-layout: portfolio-3d
+layout: home
 permalink: /
 ---
