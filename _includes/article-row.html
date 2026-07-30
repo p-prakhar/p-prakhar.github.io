@@ -1,0 +1,21 @@
+{% assign article = include.item %}
+{% assign article_url = article.external_url | default: article.url %}
+{% assign words = article.content | number_of_words %}
+{% assign minutes = words | plus: 179 | divided_by: 180 %}
+<article class="article-row" data-article-category="{{ article.category | default: 'essay' | escape }}">
+  <time class="article-row__date" datetime="{{ article.date | date_to_xmlschema }}">
+    {{ article.date | date: "%d %b" }}
+  </time>
+  <div class="article-row__body">
+    <h3><a href="{{ article_url | relative_url }}">{{ article.title }}</a></h3>
+    {% if article.description %}
+      <p>{{ article.description }}</p>
+    {% endif %}
+    <div class="article-row__meta">
+      <span>{{ article.category | default: "Essay" | capitalize }}</span>
+      <span aria-hidden="true">·</span>
+      <span>{{ minutes | at_least: 1 }} min read</span>
+    </div>
+  </div>
+  <span class="article-row__arrow" aria-hidden="true">→</span>
+</article>

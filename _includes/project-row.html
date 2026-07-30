@@ -1,0 +1,30 @@
+{% assign project = include.project %}
+{% assign project_url = project.external_url | default: project.repository_url %}
+{% assign project_is_external = false %}
+{% if project_url %}
+  {% assign project_is_external = true %}
+{% else %}
+  {% assign project_url = project.url | relative_url %}
+{% endif %}
+<article class="project-row">
+  {% if project.image %}
+    <img class="project-row__image" src="{{ project.image | relative_url }}" alt="" loading="lazy">
+  {% endif %}
+  <div class="project-row__body">
+    <p class="project-row__number" aria-hidden="true">{{ include.index | default: project.order }}</p>
+    <h3>
+      <a href="{{ project_url }}"{% if project_is_external %} rel="noopener noreferrer"{% endif %}>
+        {{ project.name }}
+      </a>
+    </h3>
+    <p>{{ project.description }}</p>
+    {% if project.tools and project.tools.size > 0 %}
+      <ul class="tag-list" aria-label="Tools">
+        {% for tool in project.tools %}
+          <li>{{ tool }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+  </div>
+  <span class="project-row__arrow" aria-hidden="true">↗</span>
+</article>

@@ -1,0 +1,30 @@
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+
+  <script>
+    (function () {
+      var theme = null;
+      try {
+        var stored = localStorage.getItem("prakhar-theme");
+        if (stored === "light" || stored === "dark") theme = stored;
+      } catch (error) {
+        theme = null;
+      }
+
+      if (!theme && window.matchMedia) {
+        theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      }
+
+      document.documentElement.dataset.theme = theme || "light";
+    })();
+  </script>
+
+  {% seo %}
+  {% feed_meta %}
+  {% if page.canonical_url %}
+    <link rel="canonical" href="{{ page.canonical_url | absolute_url }}">
+  {% endif %}
+  <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+</head>

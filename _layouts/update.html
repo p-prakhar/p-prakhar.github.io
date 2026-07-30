@@ -1,0 +1,23 @@
+---
+layout: default
+section: now
+---
+<article class="update-page shell-width">
+  <header class="page-intro">
+    <p class="eyebrow">Now</p>
+    <h1>{{ page.title }}</h1>
+    <p class="post-meta">
+      <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%-d %B %Y" }}</time>
+      {% if page.location %}
+        <span aria-hidden="true">·</span>
+        <span>{{ page.location }}</span>
+      {% endif %}
+    </p>
+  </header>
+  <div class="prose">
+    {{ content }}
+  </div>
+  <footer class="post-footer">
+    <a class="text-link" href="{{ '/now/' | relative_url }}">← All updates</a>
+  </footer>
+</article>

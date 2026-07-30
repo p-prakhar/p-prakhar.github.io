@@ -1,0 +1,66 @@
+@media print {
+  :root,
+  [data-theme="dark"] {
+    --background: #ffffff;
+    --surface: #ffffff;
+    --text: #111111;
+    --muted: #444444;
+    --line: #cccccc;
+    --accent: #111111;
+  }
+
+  body {
+    font-size: 10.5pt;
+    line-height: 1.45;
+  }
+
+  .site-header,
+  .site-footer,
+  .skip-link,
+  .theme-toggle,
+  .filter-list,
+  .jump-links,
+  [data-print],
+  .star-note-wrap {
+    display: none !important;
+  }
+
+  .site-main {
+    padding: 0;
+  }
+
+  .shell-width,
+  .page,
+  .prose {
+    width: 100%;
+    max-width: none;
+  }
+
+  .page-intro {
+    margin-bottom: 1.5rem;
+  }
+
+  .page-intro h1 {
+    font-size: 28pt;
+  }
+
+  .work-section,
+  .work-entry,
+  .project-row,
+  .skill-group {
+    break-inside: avoid;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  a[href^="http"]::after {
+    content: " (" attr(href) ")";
+    color: #555555;
+    font-family: var(--font-sans);
+    font-size: 8pt;
+    overflow-wrap: anywhere;
+  }
+}

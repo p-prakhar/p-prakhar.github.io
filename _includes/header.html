@@ -1,0 +1,19 @@
+<header class="site-header">
+  <div class="header-primary shell-width">
+    <a class="site-brand" href="{{ '/' | relative_url }}" aria-label="Prakhar Pandey — home">
+      <span>Prakhar</span>
+      <span class="brand-face" aria-hidden="true">
+        <span class="brand-smile">:)</span>
+        <span class="brand-wink">;)</span>
+      </span>
+    </a>
+    {% include theme-toggle.html %}
+  </div>
+
+  <nav class="site-nav shell-width" aria-label="Primary">
+    <a href="{{ '/writing/' | relative_url }}"{% if page.section == 'writing' %} aria-current="page"{% endif %}>Writing</a>
+    <a href="{{ '/now/' | relative_url }}"{% if page.section == 'now' %} aria-current="page"{% endif %}>Now</a>
+    <a href="{{ '/work/' | relative_url }}"{% if page.section == 'work' %} aria-current="page"{% endif %}>Work</a>
+    <a href="{{ '/about/' | relative_url }}"{% if page.section == 'about' %} aria-current="page"{% endif %}>About</a>
+  </nav>
+</header>

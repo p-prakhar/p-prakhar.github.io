@@ -1,0 +1,13 @@
+<!doctype html>
+<html lang="{{ site.lang | default: 'en' }}" data-theme="light">
+  {% include head.html %}
+  <body class="page-shell page-shell--{{ page.section | default: 'default' }}">
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    {% include header.html %}
+    <main id="main-content" class="site-main" tabindex="-1">
+      {{ content }}
+    </main>
+    {% include footer.html %}
+    <script src="{{ '/assets/js/site.js' | relative_url }}" defer></script>
+  </body>
+</html>

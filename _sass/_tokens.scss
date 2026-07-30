@@ -1,0 +1,50 @@
+:root {
+  color-scheme: light;
+  --paper: #f4efe5;
+  --paper-raised: #fbf8f1;
+  --paper-text: #29251f;
+  --paper-muted: #6f665c;
+  --paper-line: rgba(85, 72, 57, 0.2);
+  --paper-accent: #a4432d;
+  --paper-accent-soft: rgba(164, 67, 45, 0.1);
+
+  --background: var(--paper);
+  --surface: var(--paper-raised);
+  --text: var(--paper-text);
+  --muted: var(--paper-muted);
+  --line: var(--paper-line);
+  --accent: var(--paper-accent);
+  --accent-soft: var(--paper-accent-soft);
+
+  --font-serif: Georgia, "Times New Roman", serif;
+  --font-accent: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  --font-sans: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-mono: ui-monospace, "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+
+  --measure: 70ch;
+  --shell: 70rem;
+  --gutter: clamp(1.1rem, 4vw, 2.5rem);
+  --radius: 0.75rem;
+  --focus-ring: 0 0 0 3px var(--background), 0 0 0 5px var(--accent);
+  --shadow: 0 1.25rem 3rem rgba(43, 35, 27, 0.08);
+}
+
+[data-theme="dark"] {
+  color-scheme: dark;
+  --ink: #191612;
+  --ink-raised: #211d18;
+  --ink-text: #eee5d8;
+  --ink-muted: #b9ada0;
+  --ink-line: rgba(238, 229, 216, 0.15);
+  --ink-accent: #df8f71;
+  --ink-accent-soft: rgba(223, 143, 113, 0.11);
+
+  --background: var(--ink);
+  --surface: var(--ink-raised);
+  --text: var(--ink-text);
+  --muted: var(--ink-muted);
+  --line: var(--ink-line);
+  --accent: var(--ink-accent);
+  --accent-soft: var(--ink-accent-soft);
+  --shadow: 0 1.25rem 3rem rgba(0, 0, 0, 0.18);
+}

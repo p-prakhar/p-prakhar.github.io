@@ -1,0 +1,24 @@
+{% assign tracks = site.data.music %}
+{% if tracks and tracks.size > 0 %}
+  {% assign fallback = tracks | first %}
+  <aside class="daily-music" data-music-pick aria-labelledby="daily-music-title">
+    <span class="daily-music__note" aria-hidden="true">♪</span>
+    <div>
+      <p class="daily-music__label" id="daily-music-title">From the current favourites</p>
+      <p class="daily-music__track">
+        {% if fallback.url %}
+          <a href="{{ fallback.url }}" data-music-link rel="noopener noreferrer">
+            <span data-music-title>{{ fallback.title }}</span>
+            <span aria-hidden="true"> — </span>
+            <span data-music-artist>{{ fallback.artist }}</span>
+          </a>
+        {% else %}
+          <span data-music-title>{{ fallback.title }}</span>
+          <span aria-hidden="true"> — </span>
+          <span data-music-artist>{{ fallback.artist }}</span>
+        {% endif %}
+      </p>
+    </div>
+    <script type="application/json" data-music-data>{{ tracks | jsonify }}</script>
+  </aside>
+{% endif %}
