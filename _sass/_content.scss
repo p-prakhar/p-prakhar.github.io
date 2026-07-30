@@ -131,6 +131,7 @@
 .home-intro h1 em {
   color: var(--accent);
   font-family: var(--font-accent);
+  font-style: italic;
   font-weight: 400;
 }
 
@@ -175,7 +176,16 @@
 .now-card h3 a,
 .current-update h2 a {
   color: var(--text);
-  text-decoration: none;
+  text-decoration: underline;
+  text-decoration-color: var(--line);
+}
+
+.now-card h3 a:hover,
+.now-card h3 a:focus-visible,
+.current-update h2 a:hover,
+.current-update h2 a:focus-visible {
+  color: var(--accent);
+  text-decoration-color: var(--accent);
 }
 
 .now-card__body > :last-child,

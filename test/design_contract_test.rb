@@ -99,6 +99,68 @@ class DesignContractTest < Minitest::Test
     refute_match(/\.project-row__body\s*>\s*p:not\(\.project-row__number\)[^{]*\{[^}]*display:\s*none/im, styles)
   end
 
+  def test_reading_column_keeps_side_gutters_on_narrow_screens
+    styles = read_site_file("_sass", "_layout.scss")
+    body_rule = styles[/\.post-body\s*\{[^}]*\}/m]
+
+    refute_nil body_rule
+    assert_match(/var\(--gutter\)/, body_rule)
+  end
+
+  def test_home_headline_emphasis_is_italic_and_accented
+    home = read_site_file("_layouts", "home.html")
+    styles = read_site_file("_sass", "_content.scss")
+    emphasis_rule = styles[/\.home-intro h1 em\s*\{[^}]*\}/m]
+
+    refute_includes home, "<em>notice.</em>,"
+    assert_match(/<em>I notice<\/em>/, home)
+    refute_nil emphasis_rule
+    assert_match(/font-style:\s*italic/, emphasis_rule)
+    assert_match(/color:\s*var\(--accent\)/, emphasis_rule)
+  end
+
+  def test_content_titles_are_visually_identifiable_as_links
+    components = read_site_file("_sass", "_components.scss")
+    content = read_site_file("_sass", "_content.scss")
+
+    [
+      components[/\.project-row h3 a\s*\{[^}]*\}/m],
+      components[/\.article-row h3 a\s*\{[^}]*\}/m],
+      content[/\.now-card h3 a,\n\.current-update h2 a\s*\{[^}]*\}/m]
+    ].each do |rule|
+      refute_nil rule
+      assert_match(/text-decoration:\s*underline/, rule)
+    end
+  end
+
+  # Projects without a public repository fall back to their generated case-study
+  # page, so only outbound links are constrained here.
+  def test_project_links_resolve_to_a_real_destination
+    assert_includes read_site_file("_includes", "project-row.html"),
+                    "project.url | relative_url"
+
+    Dir[root_path("_projects", "*.md")].sort.each do |path|
+      link = front_matter(path).values_at("external_url", "repository_url").compact.first
+      next if link.nil?
+
+      assert_match(%r{\Ahttps://}, link, File.basename(path))
+    end
+  end
+
+  # Jekyll titleizes the filename slug when a document omits `title`, which would
+  # silently rename case-study pages ("ppdex.md" -> "Ppdex").
+  def test_projects_carry_an_explicit_title
+    assert_includes read_site_file("_includes", "project-row.html"), "project.title"
+
+    Dir[root_path("_projects", "*.md")].sort.each do |path|
+      data = front_matter(path)
+      slug_title = File.basename(path, ".md").tr("-_", "  ").split.map(&:capitalize).join(" ")
+
+      refute_nil data["title"], "#{File.basename(path)} is missing a title"
+      refute_equal slug_title, data["title"], "#{File.basename(path)} relies on the slug title"
+    end
+  end
+
   def test_compiled_assets_use_an_explicit_cache_version
     config = site_config
     shell = [

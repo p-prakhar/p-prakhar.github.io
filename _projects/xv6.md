@@ -1,5 +1,5 @@
 ---
-name: "xv6 Operating System"
+title: "xv6 Operating System"
 order: 20
 tools:
   - C

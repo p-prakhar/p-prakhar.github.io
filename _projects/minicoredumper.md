@@ -1,5 +1,5 @@
 ---
-name: "PAX Support for minicoredumper"
+title: "PAX Support for minicoredumper"
 order: 120
 tools:
   - C

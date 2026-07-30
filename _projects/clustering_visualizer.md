@@ -1,5 +1,5 @@
 ---
-name: "Clustering Algorithm Visualizer"
+title: "Clustering Algorithm Visualizer"
 order: 60
 tools:
   - Python

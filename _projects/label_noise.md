@@ -1,5 +1,5 @@
 ---
-name: "Paraphrase Detection with Label Noise Analysis"
+title: "Paraphrase Detection with Label Noise Analysis"
 order: 80
 tools:
   - Python

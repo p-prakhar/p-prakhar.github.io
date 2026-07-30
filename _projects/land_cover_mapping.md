@@ -1,5 +1,5 @@
 ---
-name: "Land Cover Mapping with Meter-Resolution Satellite Imagery"
+title: "Land Cover Mapping with Meter-Resolution Satellite Imagery"
 order: 70
 tools:
   - Python

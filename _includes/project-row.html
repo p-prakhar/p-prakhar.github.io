@@ -21,7 +21,7 @@
     <p class="project-row__number" aria-hidden="true">{{ include.index | default: project.order }}</p>
     <h3>
       <a href="{{ project_url }}"{% if project_is_external %} rel="noopener noreferrer"{% endif %}>
-        {{ project.name }}
+        {{ project.title }}
       </a>
     </h3>
     <p>{{ project.description }}</p>

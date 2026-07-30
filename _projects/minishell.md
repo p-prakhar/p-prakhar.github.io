@@ -1,5 +1,5 @@
 ---
-name: "Minishell for Linux"
+title: "Minishell for Linux"
 order: 40
 tools:
   - C++

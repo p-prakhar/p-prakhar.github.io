@@ -1,5 +1,5 @@
 ---
-name: "ppDEX: Automated Market Maker"
+title: "ppDEX: Automated Market Maker"
 order: 50
 tools:
   - Solidity

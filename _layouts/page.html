@@ -1,11 +1,10 @@
 ---
 layout: default
 ---
-{% assign page_title = page.title | default: page.name %}
 <article class="page shell-width">
   <header class="page-intro">
     {% if page.eyebrow %}<p class="eyebrow">{{ page.eyebrow }}</p>{% endif %}
-    <h1>{{ page_title }}</h1>
+    <h1>{{ page.title }}</h1>
     {% if page.description %}<p class="page-intro__description">{{ page.description }}</p>{% endif %}
   </header>
   <div class="prose">

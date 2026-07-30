@@ -1,5 +1,5 @@
 ---
-name: "MovRev: Movie Review site"
+title: "MovRev: Movie Review site"
 order: 110
 tools:
   - Django

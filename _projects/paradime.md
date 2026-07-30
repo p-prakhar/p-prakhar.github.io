@@ -1,5 +1,5 @@
 ---
-name: "Paradime Product Challenge"
+title: "Paradime Product Challenge"
 order: 90
 tools:
   - Product design

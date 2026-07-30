@@ -1,5 +1,5 @@
 ---
-name: "Bachelor's Thesis: Mixing under Monotone Censoring"
+title: "Bachelor's Thesis: Mixing under Monotone Censoring"
 order: 10
 tools:
   - Python

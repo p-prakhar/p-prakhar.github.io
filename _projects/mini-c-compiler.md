@@ -1,5 +1,5 @@
 ---
-name: "Mini-C Compiler"
+title: "Mini-C Compiler"
 order: 30
 tools:
   - C

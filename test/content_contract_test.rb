@@ -46,7 +46,7 @@ class ContentContractTest < Minitest::Test
 
     assert_equal orders.uniq.sort, orders.sort
     projects.each do |path, data|
-      refute_empty data.fetch("name"), path
+      refute_empty data.fetch("title"), path
       refute_empty data.fetch("description"), path
       assert_kind_of Array, data.fetch("tools"), path
       source = File.read(path)

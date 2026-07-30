@@ -1,5 +1,5 @@
 ---
-name: "Your Project Name"
+title: "Your Project Name"
 order: 130
 tools:
   - Technology 1

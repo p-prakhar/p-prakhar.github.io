@@ -167,7 +167,14 @@
 
 .article-row h3 a {
   color: var(--text);
-  text-decoration: none;
+  text-decoration: underline;
+  text-decoration-color: var(--line);
+}
+
+.article-row h3 a:hover,
+.article-row h3 a:focus-visible {
+  color: var(--accent);
+  text-decoration-color: var(--accent);
 }
 
 .article-row p {
@@ -440,7 +447,14 @@
 
 .project-row h3 a {
   color: var(--text);
-  text-decoration: none;
+  text-decoration: underline;
+  text-decoration-color: var(--line);
+}
+
+.project-row h3 a:hover,
+.project-row h3 a:focus-visible {
+  color: var(--accent);
+  text-decoration-color: var(--accent);
 }
 
 .project-row__body > p:not(.project-row__number) {

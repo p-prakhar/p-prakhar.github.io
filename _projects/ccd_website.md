@@ -1,5 +1,5 @@
 ---
-name: "Placement Cell Website"
+title: "Placement Cell Website"
 order: 100
 tools:
   - Bootstrap
