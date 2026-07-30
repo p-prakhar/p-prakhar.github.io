@@ -1,10 +1,9 @@
 ---
-layout: portfolio-3d-page
+layout: page
 title: "Your Page Title"
+eyebrow: "Optional short label"
+description: "Brief description of the page."
 permalink: /your-page/
-weight: 10
 ---
 
-{% include layouts/base-page.html terminal_header="> ./your_command" description="Brief description of your page" %}
-
-<!-- Your page content here -->
+Write the page in Markdown.

@@ -1,10 +1,11 @@
 ---
 name: "Your Project Name"
-tools: [Technology1, Technology2]
-image: ../assets/img/projects/your-project.png
-description: Brief description of your project
-external_url: "https://github.com/yourusername/yourproject"
-featured: true
+order: 130
+tools:
+  - Technology 1
+  - Technology 2
+description: "A one or two sentence summary for the Work page."
+repository_url: "https://github.com/yourusername/yourproject"
 ---
 
 Detailed description of your project here.
@@ -15,9 +16,8 @@ Detailed description of your project here.
 - Feature 2
 - Feature 3
 
-## Technologies Used
+## What I learned
 
-- Technology 1
-- Technology 2
+Add the context that does not fit in the short summary.
 
-{% include components/elements/button.html link="https://github.com/yourusername/yourproject" text="View on GitHub" %}
+[View the source](https://github.com/yourusername/yourproject).

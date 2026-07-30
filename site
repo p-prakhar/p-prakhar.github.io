@@ -1,0 +1,21 @@
+#!/bin/sh
+set -eu
+
+ROOT=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
+LOCKED_RUBY="/opt/homebrew/Cellar/ruby/3.4.7/bin/ruby"
+BREW_RUBY="/opt/homebrew/opt/ruby/bin/ruby"
+
+if [ -x "$LOCKED_RUBY" ]; then
+  exec "$LOCKED_RUBY" "$ROOT/lib/site_cli.rb" "$@"
+fi
+
+if [ -x "$BREW_RUBY" ]; then
+  exec "$BREW_RUBY" "$ROOT/lib/site_cli.rb" "$@"
+fi
+
+if command -v ruby >/dev/null 2>&1; then
+  exec ruby "$ROOT/lib/site_cli.rb" "$@"
+fi
+
+echo "Error: Ruby is required to manage this Jekyll site." >&2
+exit 1

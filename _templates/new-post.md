@@ -1,26 +1,23 @@
 ---
 layout: post
-title: "Your Blog Post Title"
-tags: [tag1, tag2]
-style:
-  color: primary
-description: Brief description for SEO and previews
+title: "Your title"
+description: "One sentence for previews and search."
+category: tech # tech, travel, life, or essay
+date: YYYY-MM-DD
+timeline_kind: writing
+timeline_sort: "YYYY-MM-DD"
+tags:
+  - example
+published: false
 ---
 
-# Your Blog Post Title
+Start writing here. The layout supplies the page title, date, and reading time,
+so the body does not need another level-one heading.
 
-Your content here. Use markdown formatting.
+## A section
 
-## Section Header
-
-More content...
-
-## Code Example
+Markdown, images, quotations, and fenced code blocks all work.
 
 ```language
-// Your code here
+your code
 ```
-
-## Conclusion
-
-Wrap up your thoughts.
