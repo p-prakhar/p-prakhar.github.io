@@ -300,7 +300,7 @@ function dice(d) {
       }
     }, 80);
   } }, "roll the dice 🎲");
-  return section("dice", "What's our next date?", el("div", { class: "dice-box" }, face, btn), out);
+  return section("dice", d.extras.diceTitle || "What's our next date?", el("div", { class: "dice-box" }, face, btn), out);
 }
 
 function about(d) {
