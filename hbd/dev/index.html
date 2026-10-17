@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en" data-theme="blush">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<meta name="referrer" content="no-referrer">
+<title>for you</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Fredoka:wght@500;600&family=Nunito:wght@400;600;700;800&display=swap">
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-state="loading">
+<section id="countdown" class="screen" hidden>
+  <div>
+    <p class="lock-bunny" aria-hidden="true">🐇</p>
+    <p class="eyebrow">it's not the right time (yet) 😑</p>
+    <div class="cd" role="timer">
+      <span><b id="cd-d">0</b>days</span><span><b id="cd-h">0</b>hours</span><span><b id="cd-m">0</b>min</span><span><b id="cd-s">0</b>sec</span>
+    </div>
+  </div>
+</section>
+<section id="lock" class="screen" hidden>
+  <form id="lock-form" autocomplete="off">
+    <p class="lock-bunny" aria-hidden="true">🐇</p>
+    <p class="lock-title">knock knock, birthday girl</p>
+    <p class="eyebrow">password please · all small letters</p>
+    <p id="hint" class="hint"></p>
+    <input id="pass" name="pass" type="text" autocapitalize="none" autocorrect="off" spellcheck="false" aria-label="answer" required>
+    <button id="open-btn" type="submit">let me in 🎂</button>
+    <p id="lock-msg" aria-live="polite"></p>
+  </form>
+</section>
+<main id="story" hidden></main>
+<noscript><p class="screen">This page needs JavaScript.</p></noscript>
+<script type="module" src="app.js"></script>
+</body>
+</html>

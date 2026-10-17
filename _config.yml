@@ -46,6 +46,10 @@ defaults:
       type: updates
     values:
       layout: update
+  - scope:
+      path: "hbd"
+    values:
+      sitemap: false
 
 exclude:
   - README.md
