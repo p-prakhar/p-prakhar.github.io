@@ -12,7 +12,43 @@ this Mac and falls back to `ruby` elsewhere.
 bundle install
 ```
 
-## Write and publish
+## Write from your phone
+
+The site has a phone-friendly editor at
+[p-prakhar.github.io/admin/](https://p-prakhar.github.io/admin/)
+([Sveltia CMS](https://github.com/sveltia/sveltia-cms), configured in
+`admin/config.yml`). Every save is a commit to `jekyll`, and the normal
+GitHub Actions deploy publishes it in about a minute.
+
+- **Now updates** and **Writing** have a **Published** switch. Off means
+  draft: the file is committed but Jekyll never builds it. Switch it on and
+  save to publish.
+- **Projects**, the **About** page, **Music favourites**, and the **Profile**
+  are editable too. `hbd/` is deliberately not in the editor.
+- Photos added from the phone are resized to WebP and stored in
+  `assets/img/uploads/`.
+- After you sign in on a device, every page on the site shows a small
+  "New update · New post · Edit this page" row in the footer on that device
+  only.
+
+### One-time setup on Android
+
+1. Create a fine-grained token at
+   <https://github.com/settings/personal-access-tokens/new>: repository
+   access **Only select repositories → p-prakhar.github.io**, permission
+   **Contents: Read and write** (Metadata read-only is added automatically).
+   Pick an expiry you are happy to renew.
+2. Open <https://p-prakhar.github.io/admin/> in Chrome, tap
+   **Sign In Using Access Token**, and paste the token.
+3. Chrome menu → **Add to Home screen** → **Install**. The editor now opens
+   from its own icon like an app.
+
+Optional: for a "Sign in with GitHub" button instead of a token, deploy
+[sveltia-cms-auth](https://github.com/sveltia/sveltia-cms-auth) to Cloudflare
+Workers, register a GitHub OAuth app pointing at it, and set `base_url` in
+`admin/config.yml`.
+
+## Write and publish from a computer
 
 Create an unpublished Markdown draft:
 

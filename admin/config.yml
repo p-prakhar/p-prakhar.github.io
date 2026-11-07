@@ -1,0 +1,222 @@
+# yaml-language-server: $schema=https://unpkg.com/@sveltia/cms/schema/sveltia-cms.json
+#
+# Phone editor for this site (Sveltia CMS). Every save is a commit to the
+# `jekyll` branch, which GitHub Actions builds and deploys in about a minute.
+#
+# Drafts: anything with "Published" switched off is committed but never built,
+# so it stays private to the repository until the switch is flipped.
+#
+# Never add the `hbd/` folder here; it is an encrypted page and must not be
+# touched by the editor.
+
+backend:
+  name: github
+  repo: p-prakhar/p-prakhar.github.io
+  branch: jekyll
+  # Sign-in works out of the box with a GitHub personal access token.
+  # For a "Sign in with GitHub" button, deploy sveltia-cms-auth and uncomment:
+  # base_url: https://sveltia-cms-auth.<your-subdomain>.workers.dev
+  commit_messages:
+    create: "Add {{collection}} “{{slug}}”"
+    update: "Update {{collection}} “{{slug}}”"
+    delete: "Delete {{collection}} “{{slug}}”"
+    uploadMedia: "Upload “{{path}}”"
+    deleteMedia: "Delete “{{path}}”"
+
+app_title: Write · Prakhar
+site_url: https://p-prakhar.github.io
+display_url: https://p-prakhar.github.io
+logo:
+  src: /assets/favicon.ico
+
+media_folder: assets/img/uploads
+public_folder: /assets/img/uploads
+media_libraries:
+  default:
+    config:
+      # Phone photos are large; shrink them on upload so pages stay light.
+      transformations:
+        raster_image:
+          format: webp
+          quality: 82
+          width: 1800
+          height: 1800
+
+slug:
+  encoding: ascii
+  clean_accents: true
+
+collections:
+  - name: updates
+    label: Now updates
+    label_singular: Now update
+    description: >-
+      Short notes for the Now page. The newest published one also appears on
+      the home page.
+    icon: bolt
+    folder: _updates
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    summary: "{{title}} · {{date}}{{published | ternary('', ' · draft')}}"
+    sortable_fields:
+      fields: [date, title]
+      default:
+        field: date
+        direction: descending
+    view_filters:
+      - label: Drafts
+        field: published
+        pattern: false
+      - label: Published
+        field: published
+        pattern: true
+    fields:
+      - { name: title, label: Title, widget: string }
+      - name: date
+        label: Date
+        widget: datetime
+        type: date
+        format: YYYY-MM-DD
+        default: "{{now}}"
+      - { name: location, label: Where, widget: string, required: false }
+      - { name: reading, label: Reading, widget: string, required: false }
+      - name: tags
+        label: Tags
+        widget: list
+        required: false
+        default: []
+      - name: published
+        label: Published
+        widget: boolean
+        default: false
+        hint: Off keeps it as a private draft. Switch on and save to publish.
+      - { name: timeline_kind, widget: hidden, default: update }
+      - { name: body, label: Update, widget: markdown }
+
+  - name: posts
+    label: Writing
+    label_singular: Post
+    description: Long-form posts. Off = draft, on = live on /writing/.
+    icon: edit_note
+    folder: _posts
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    summary: "{{title}} · {{category}}{{published | ternary('', ' · draft')}}"
+    sortable_fields:
+      fields: [date, title, category]
+      default:
+        field: date
+        direction: descending
+    view_filters:
+      - label: Drafts
+        field: published
+        pattern: false
+      - label: Published
+        field: published
+        pattern: true
+    view_groups:
+      - label: Category
+        field: category
+    fields:
+      - { name: title, label: Title, widget: string }
+      - name: description
+        label: One-line summary
+        widget: text
+        hint: Shown in lists and search results.
+      - name: category
+        label: Category
+        widget: select
+        options:
+          - { label: Tech, value: tech }
+          - { label: Travel, value: travel }
+          - { label: Life, value: life }
+          - { label: Essay, value: essay }
+        default: tech
+      - name: tags
+        label: Tags
+        widget: list
+        required: false
+        default: []
+      - name: date
+        label: Date
+        widget: datetime
+        type: date
+        format: YYYY-MM-DD
+        default: "{{now}}"
+        hint: Change to today when you publish an older draft.
+      - name: published
+        label: Published
+        widget: boolean
+        default: false
+        hint: Off keeps it as a private draft. Switch on and save to publish.
+      - { name: layout, widget: hidden, default: post }
+      - { name: timeline_kind, widget: hidden, default: writing }
+      - { name: body, label: Body, widget: markdown }
+
+  - name: projects
+    label: Projects
+    label_singular: Project
+    icon: deployed_code
+    folder: _projects
+    create: true
+    slug: "{{slug}}"
+    summary: "{{order}} · {{title}}"
+    sortable_fields:
+      fields: [order, title]
+      default:
+        field: order
+        direction: ascending
+    fields:
+      - { name: title, label: Title, widget: string }
+      - name: order
+        label: Order
+        widget: number
+        value_type: int
+        hint: Lower numbers show first. Use a number no other project uses.
+      - { name: description, label: Summary, widget: text }
+      - { name: tools, label: Tools, widget: list, default: [] }
+      - { name: repository_url, label: Source code URL, widget: string, required: false }
+      - { name: external_url, label: Other link, widget: string, required: false }
+      - { name: image, label: Image, widget: image, required: false }
+      - { name: body, label: Case study, widget: markdown }
+
+  - name: pages
+    label: Pages
+    icon: description
+    files:
+      - name: about
+        label: About
+        file: pages/about.md
+        fields:
+          - { name: layout, widget: hidden, default: page }
+          - { name: section, widget: hidden, default: about }
+          - { name: permalink, widget: hidden, default: /about/ }
+          - { name: title, label: Title, widget: string }
+          - { name: eyebrow, label: Small label, widget: string, required: false }
+          - { name: description, label: Intro line, widget: text, required: false }
+          - { name: body, label: Body, widget: markdown }
+
+  - name: data
+    label: Site details
+    icon: tune
+    files:
+      - name: music
+        label: Music favourites
+        file: _data/music.yml
+        fields:
+          - name: tracks
+            label: Tracks
+            widget: list
+            root: true
+            summary: "{{title}} · {{artist}}"
+            fields:
+              - { name: title, label: Title, widget: string }
+              - { name: artist, label: Artist, widget: string }
+              - { name: url, label: Link, widget: string, required: false }
+      - name: profile
+        label: Profile
+        file: _data/profile.yml
+        fields:
+          - { name: headline, label: Headline, widget: string }
+          - { name: summary, label: Summary, widget: text }
+          - { name: location, label: Location, widget: string }

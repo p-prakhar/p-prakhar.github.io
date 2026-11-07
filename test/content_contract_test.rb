@@ -33,7 +33,7 @@ class ContentContractTest < Minitest::Test
       data = front_matter(path)
       assert_includes APPROVED_CATEGORIES, data["category"], path
       refute_empty data.fetch("description"), path
-      assert_kind_of Array, data.fetch("tags"), path
+      assert_kind_of Array, data.fetch("tags", []), path
       assert_equal "writing", data["timeline_kind"], path
     end
   end
@@ -92,18 +92,25 @@ class ContentContractTest < Minitest::Test
     assert_includes now_page, "site.posts"
   end
 
-  def test_every_timeline_source_has_a_comparable_iso_sort_key
+  # The Now page sorts milestones, posts, and updates by their own dates, so
+  # nothing written from the phone editor needs a hand-maintained sort key.
+  def test_every_timeline_source_has_an_iso_date
     events = YAML.safe_load(
       read_site_file("_data", "milestones.yml"),
       aliases: true
     )
-    events += Dir[root_path("_posts", "*.md")].map { |path| front_matter(path) }
-    events += Dir[root_path("_updates", "*.md")].map { |path| front_matter(path) }
-
     events.each do |event|
-      assert_kind_of String, event["timeline_sort"]
-      assert_match(/\A\d{4}-\d{2}-\d{2}\z/, event["timeline_sort"])
+      assert_match(/\A\d{4}-\d{2}-\d{2}\z/, event["date"].to_s, event["title"])
     end
+
+    Dir[root_path("{_posts,_updates}", "*.md")].each do |path|
+      date = front_matter(path)["date"] || File.basename(path)[0, 10]
+      assert_match(/\A\d{4}-\d{2}-\d{2}/, date.to_s, path)
+    end
+  end
+
+  def test_now_page_does_not_depend_on_timeline_sort
+    refute_includes read_site_file("pages", "now.html"), "timeline_sort"
   end
 
   def test_primary_pages_use_new_layouts_and_routes
