@@ -16,6 +16,10 @@
     --accent: #111111;
   }
 
+  body::before {
+    display: none !important;
+  }
+
   html,
   body {
     color: #111111 !important;

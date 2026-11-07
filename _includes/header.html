@@ -1,20 +1,50 @@
-<header class="site-header">
-  <div class="site-header__inner shell-width">
+{% assign is_front_page = false %}
+{% if page.layout == "home" %}{% assign is_front_page = true %}{% endif %}
+<header class="site-header{% if is_front_page %} site-header--front{% endif %}">
+  <div class="dateline shell-width">
+    <p class="dateline__place">{{ site.data.profile.location | default: "Bengaluru, India" }}</p>
+    <p class="dateline__date"><time data-today datetime="{{ site.time | date: '%Y-%m-%d' }}">{{ site.time | date: "%A, %-d %B %Y" }}</time></p>
+    <p class="dateline__edition"><span data-edition>Morning edition</span>{% include theme-toggle.html %}</p>
+  </div>
+
+  <div class="masthead shell-width">
+    {% if is_front_page %}
+      <aside class="ear ear--left" aria-label="Tonight's sky">
+        <p class="ear__label">Tonight's sky</p>
+        {% include star-note.html %}
+      </aside>
+    {% endif %}
+
     <a class="site-brand" href="{{ '/' | relative_url }}" aria-label="Prakhar Pandey, home">
-      <span>Prakhar</span>
+      <span class="site-brand__name">Prakhar</span>
       <span class="brand-face" aria-hidden="true">
         <span class="brand-smile">:)</span>
         <span class="brand-wink">;)</span>
       </span>
     </a>
 
-    <nav class="site-nav" aria-label="Primary">
-      <a href="{{ '/writing/' | relative_url }}"{% if page.section == 'writing' %} aria-current="page"{% endif %}>Writing</a>
-      <a href="{{ '/now/' | relative_url }}"{% if page.section == 'now' %} aria-current="page"{% endif %}>Now</a>
-      <a href="{{ '/work/' | relative_url }}"{% if page.section == 'work' %} aria-current="page"{% endif %}>Work</a>
-      <a href="{{ '/about/' | relative_url }}"{% if page.section == 'about' %} aria-current="page"{% endif %}>About</a>
-    </nav>
-
-    {% include theme-toggle.html %}
+    {% if is_front_page %}
+      <aside class="ear ear--right" aria-label="{% if site.data.music and site.data.music.size > 0 %}Today's record{% else %}Inside this edition{% endif %}">
+        {% if site.data.music and site.data.music.size > 0 %}
+          <p class="ear__label">Today's record</p>
+          {% include daily-music.html %}
+        {% else %}
+          {% assign live_updates = site.updates | where_exp: "update", "update.published != false" %}
+          <p class="ear__label">Inside this edition</p>
+          <ul class="ear__index">
+            <li><a href="{{ '/writing/' | relative_url }}">Writing</a> <span class="tabular">{{ site.posts.size }}</span></li>
+            <li><a href="{{ '/now/' | relative_url }}">Now</a> <span class="tabular">{{ live_updates.size }}</span></li>
+            <li><a href="{{ '/work/#projects' | relative_url }}">Projects</a> <span class="tabular">{{ site.projects.size }}</span></li>
+          </ul>
+        {% endif %}
+      </aside>
+    {% endif %}
   </div>
+
+  <nav class="site-nav shell-width" aria-label="Primary">
+    <a href="{{ '/writing/' | relative_url }}"{% if page.section == 'writing' %} aria-current="page"{% endif %}>Writing</a>
+    <a href="{{ '/now/' | relative_url }}"{% if page.section == 'now' %} aria-current="page"{% endif %}>Now</a>
+    <a href="{{ '/work/' | relative_url }}"{% if page.section == 'work' %} aria-current="page"{% endif %}>Work</a>
+    <a href="{{ '/about/' | relative_url }}"{% if page.section == 'about' %} aria-current="page"{% endif %}>About</a>
+  </nav>
 </header>

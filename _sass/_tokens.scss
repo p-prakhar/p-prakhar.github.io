@@ -3,7 +3,7 @@
 @font-face {
   font-family: "Newsreader";
   font-style: normal;
-  font-weight: 400 600;
+  font-weight: 400 800;
   font-display: swap;
   src: url("../fonts/Newsreader-Roman.woff2") format("woff2-variations"),
        url("../fonts/Newsreader-Roman.woff2") format("woff2");
@@ -18,30 +18,44 @@
        url("../fonts/Newsreader-Italic.woff2") format("woff2");
 }
 
+// Blackletter for the masthead only (SIL OFL 1.1), subset to ASCII.
+@font-face {
+  font-family: "UnifrakturMaguntia";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../fonts/UnifrakturMaguntia.woff2") format("woff2");
+}
+
+// Old newspaper. Light is the morning edition on aged newsprint; dark is the
+// night edition. Black ink does the work; one spot red, used sparingly.
 :root {
   color-scheme: light;
-  --paper: #f4efe5;
-  --paper-raised: #faf6ee;
-  --paper-sunk: #ebe4d6;
-  --paper-text: #29251f;
-  --paper-muted: #6b6258;
-  --paper-line: rgba(85, 72, 57, 0.18);
-  --paper-line-strong: rgba(85, 72, 57, 0.34);
-  --paper-accent: #a4432d;
-  --paper-accent-soft: rgba(164, 67, 45, 0.09);
+  --newsprint: #ece3cf;
+  --newsprint-raised: #f3ecdb;
+  --newsprint-sunk: #e2d7bf;
+  --newsprint-ink: #1c1a16;
+  --newsprint-muted: #5b5245;
+  --newsprint-line: rgba(28, 26, 22, 0.2);
+  --newsprint-line-strong: #1c1a16;
+  --newsprint-spot: #8f2a1c;
+  --newsprint-spot-soft: rgba(143, 42, 28, 0.09);
+  --newsprint-grain-opacity: 0.06;
 
-  --background: var(--paper);
-  --surface: var(--paper-raised);
-  --sunk: var(--paper-sunk);
-  --text: var(--paper-text);
-  --muted: var(--paper-muted);
-  --line: var(--paper-line);
-  --line-strong: var(--paper-line-strong);
-  --accent: var(--paper-accent);
-  --accent-soft: var(--paper-accent-soft);
+  --background: var(--newsprint);
+  --surface: var(--newsprint-raised);
+  --sunk: var(--newsprint-sunk);
+  --text: var(--newsprint-ink);
+  --muted: var(--newsprint-muted);
+  --line: var(--newsprint-line);
+  --line-strong: var(--newsprint-line-strong);
+  --accent: var(--newsprint-spot);
+  --accent-soft: var(--newsprint-spot-soft);
+  --grain-opacity: var(--newsprint-grain-opacity);
 
   --font-serif: "Newsreader", "Iowan Old Style", "Palatino Linotype", Georgia, serif;
   --font-accent: var(--font-serif);
+  --font-masthead: "UnifrakturMaguntia", "Old English Text MT", var(--font-serif);
   --font-sans: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --font-mono: ui-monospace, "SFMono-Regular", "JetBrains Mono", Consolas, "Liberation Mono", monospace;
 
@@ -54,12 +68,14 @@
   --step-4: clamp(2.5rem, 1.9rem + 3.2vw, 4.75rem);
 
   --measure: 36rem;
-  --shell: 64rem;
+  --shell: 70rem;
   --gutter: clamp(1.25rem, 5vw, 2.5rem);
-  --radius: 0.5rem;
+  --radius: 0.125rem;
   --tap: 2.75rem;
+  --rule-heavy: 3px solid var(--line-strong);
+  --rule-double: 4px double var(--line-strong);
   --focus-ring: 0 0 0 2px var(--background), 0 0 0 4px var(--accent);
-  --shadow: 0 1px 0 var(--line), 0 0.75rem 2rem -1rem rgba(43, 35, 27, 0.18);
+  --shadow: none;
 
   // Motion: strong ease-out for anything that responds to a person, short
   // durations, and nothing that loops.
@@ -75,24 +91,25 @@
 
 [data-theme="dark"] {
   color-scheme: dark;
-  --ink: #191612;
-  --ink-raised: #211d18;
-  --ink-sunk: #13110e;
-  --ink-text: #eee5d8;
-  --ink-muted: #b4a898;
-  --ink-line: rgba(238, 229, 216, 0.13);
-  --ink-line-strong: rgba(238, 229, 216, 0.28);
-  --ink-accent: #df8f71;
-  --ink-accent-soft: rgba(223, 143, 113, 0.1);
+  --night: #161411;
+  --night-raised: #1e1b17;
+  --night-sunk: #100e0c;
+  --night-ink: #e8dfcb;
+  --night-muted: #a89d89;
+  --night-line: rgba(232, 223, 203, 0.16);
+  --night-line-strong: rgba(232, 223, 203, 0.62);
+  --night-spot: #d9705a;
+  --night-spot-soft: rgba(217, 112, 90, 0.1);
+  --night-grain-opacity: 0.05;
 
-  --background: var(--ink);
-  --surface: var(--ink-raised);
-  --sunk: var(--ink-sunk);
-  --text: var(--ink-text);
-  --muted: var(--ink-muted);
-  --line: var(--ink-line);
-  --line-strong: var(--ink-line-strong);
-  --accent: var(--ink-accent);
-  --accent-soft: var(--ink-accent-soft);
-  --shadow: 0 1px 0 var(--line), 0 0.75rem 2rem -1rem rgba(0, 0, 0, 0.5);
+  --background: var(--night);
+  --surface: var(--night-raised);
+  --sunk: var(--night-sunk);
+  --text: var(--night-ink);
+  --muted: var(--night-muted);
+  --line: var(--night-line);
+  --line-strong: var(--night-line-strong);
+  --accent: var(--night-spot);
+  --accent-soft: var(--night-spot-soft);
+  --grain-opacity: var(--night-grain-opacity);
 }

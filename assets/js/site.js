@@ -55,6 +55,26 @@ function updateThemeButton(button, theme) {
   button.setAttribute("aria-label", `Switch to ${nextTheme} mode`);
   button.setAttribute("aria-pressed", String(theme === "dark"));
   if (label) label.textContent = theme === "dark" ? "Dark" : "Light";
+  const edition = document.querySelector("[data-edition]");
+  if (edition) edition.textContent = editionName(theme);
+}
+
+function editionName(theme) {
+  return theme === "dark" ? "Night edition" : "Morning edition";
+}
+
+// The dateline shows the reader's today; the build date is the fallback.
+function initDateline() {
+  const time = document.querySelector("[data-today]");
+  if (!time) return;
+  const now = new Date();
+  time.dateTime = now.toISOString().slice(0, 10);
+  time.textContent = now.toLocaleDateString("en-GB", {
+    weekday: "long",
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  });
 }
 
 function initThemeToggle() {
@@ -229,6 +249,7 @@ function initSite() {
     initPiano,
     initPrintControls,
     initOwnerTools,
+    initDateline,
   ].forEach((initializer) => {
     try {
       initializer();
@@ -246,6 +267,7 @@ if (typeof module !== "undefined" && module.exports) {
     normalizeTheme,
     noteFrequency,
     hasEditorSession,
+    editionName,
   };
 }
 
