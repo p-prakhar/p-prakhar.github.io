@@ -13,20 +13,21 @@
 {% else %}
   {% assign project_print_link = "Case study" %}
 {% endif %}
+{% assign project_number = include.index | default: project.order %}
 <article class="project-row">
   {% if project.image %}
     <img class="project-row__image" src="{{ project.image | relative_url }}" alt="" loading="lazy">
   {% endif %}
+  <p class="project-row__number tabular" aria-hidden="true">{% if project_number < 10 %}0{% endif %}{{ project_number }}</p>
   <div class="project-row__body">
-    <p class="project-row__number" aria-hidden="true">{{ include.index | default: project.order }}</p>
     <h3>
       <a href="{{ project_url }}"{% if project_is_external %} rel="noopener noreferrer"{% endif %}>
-        {{ project.title }}
+        {{ project.title }}{% if project_is_external %}<span class="project-row__external" aria-hidden="true">↗</span><span class="visually-hidden"> (external link)</span>{% endif %}
       </a>
     </h3>
     <p>{{ project.description }}</p>
     {% if project.tools and project.tools.size > 0 %}
-      <ul class="tag-list" aria-label="Tools">
+      <ul class="tag-list tag-list--quiet" aria-label="Tools">
         {% for tool in project.tools %}
           <li>{{ tool }}</li>
         {% endfor %}
@@ -38,5 +39,4 @@
       </a>
     </p>
   </div>
-  <span class="project-row__arrow" aria-hidden="true">↗</span>
 </article>

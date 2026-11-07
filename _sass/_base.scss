@@ -7,19 +7,25 @@
 html {
   min-width: 20rem;
   background: var(--background);
-  scroll-padding-top: 2rem;
+  scroll-padding-top: 1.5rem;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
 body {
   min-height: 100vh;
+  min-height: 100dvh;
   margin: 0;
   color: var(--text);
   background: var(--background);
   font-family: var(--font-serif);
-  font-size: clamp(1rem, calc(0.96rem + 0.18vw), 1.125rem);
-  line-height: 1.7;
+  font-size: var(--step-1);
+  font-optical-sizing: auto;
+  font-kerning: normal;
+  line-height: 1.6;
   text-rendering: optimizeLegibility;
-  transition: color 160ms ease, background-color 160ms ease;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 button,
@@ -30,23 +36,27 @@ textarea {
   font: inherit;
 }
 
-button,
-a {
+button {
   -webkit-tap-highlight-color: transparent;
 }
 
 a {
   color: var(--accent);
-  text-decoration-thickness: 0.08em;
-  text-underline-offset: 0.18em;
+  text-decoration-line: underline;
+  text-decoration-thickness: 1px;
+  text-decoration-color: color-mix(in srgb, currentColor 45%, transparent);
+  text-underline-offset: 0.2em;
+  transition: color var(--dur-fast) ease, text-decoration-color var(--dur-fast) ease;
 }
 
-a:hover {
-  text-decoration-thickness: 0.12em;
+@media (hover: hover) and (pointer: fine) {
+  a:hover {
+    text-decoration-color: currentColor;
+  }
 }
 
 :focus-visible {
-  border-radius: 0.15rem;
+  border-radius: 0.2rem;
   outline: none;
   box-shadow: var(--focus-ring);
 }
@@ -63,12 +73,18 @@ h4 {
   text-wrap: balance;
 }
 
+p,
+li {
+  text-wrap: pretty;
+}
+
 p {
   margin-top: 0;
 }
 
 img,
-svg {
+svg,
+video {
   display: block;
   max-width: 100%;
 }
@@ -78,12 +94,13 @@ img {
 }
 
 code,
-pre {
+pre,
+kbd {
   font-family: var(--font-mono);
 }
 
 code {
-  font-size: 0.9em;
+  font-size: 0.86em;
 }
 
 pre {
@@ -91,17 +108,23 @@ pre {
   overflow-x: auto;
 }
 
+time,
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
 ::selection {
   color: var(--text);
-  background: var(--accent-soft);
+  background: color-mix(in srgb, var(--accent) 22%, transparent);
 }
 
 .skip-link {
   position: fixed;
-  z-index: 100;
+  z-index: var(--z-skip);
   top: 0.5rem;
   left: 0.5rem;
   padding: 0.65rem 0.85rem;
+  border-radius: var(--radius);
   color: var(--background);
   background: var(--text);
   font-family: var(--font-sans);
@@ -123,4 +146,16 @@ pre {
   clip: rect(0, 0, 0, 0) !important;
   white-space: nowrap !important;
   border: 0 !important;
+}
+
+// Same-site page changes cross-fade instead of flashing white. Browsers
+// without view transitions simply navigate as before.
+@view-transition {
+  navigation: auto;
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 180ms;
+  animation-timing-function: var(--ease-out);
 }
