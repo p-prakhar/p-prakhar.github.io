@@ -1,30 +1,25 @@
-<ul class="filter-list" aria-label="Filter writing by category">
+{% comment %}
+  Only categories that have posts get a filter, each with its count, so the
+  row never offers a choice that leads to an empty list.
+{% endcomment %}
+{% assign categories = "tech:Tech,travel:Travel,life:Life,essay:Essays" | split: "," %}
+{% capture filter_buttons %}{% for pair in categories %}{% assign parts = pair | split: ":" %}{% assign in_category = site.posts | where: "category", parts[0] %}{% if in_category.size > 0 %}
   <li>
-    <button class="filter-button" type="button" data-writing-filter="all" aria-pressed="true">
-      All
+    <button class="filter-button" type="button" data-writing-filter="{{ parts[0] }}" aria-pressed="false">
+      {{ parts[1] }}<span class="filter-count">{{ in_category.size }}</span>
     </button>
-  </li>
-  <li>
-    <button class="filter-button" type="button" data-writing-filter="tech" aria-pressed="false">
-      Tech
-    </button>
-  </li>
-  <li>
-    <button class="filter-button" type="button" data-writing-filter="travel" aria-pressed="false">
-      Travel
-    </button>
-  </li>
-  <li>
-    <button class="filter-button" type="button" data-writing-filter="life" aria-pressed="false">
-      Life
-    </button>
-  </li>
-  <li>
-    <button class="filter-button" type="button" data-writing-filter="essay" aria-pressed="false">
-      Essays
-    </button>
-  </li>
-</ul>
+  </li>{% assign filter_total = filter_total | plus: 1 %}{% endif %}{% endfor %}{% endcapture %}
+
+{% if filter_total > 1 %}
+  <ul class="filter-list" aria-label="Filter writing by category">
+    <li>
+      <button class="filter-button" type="button" data-writing-filter="all" aria-pressed="true">
+        All<span class="filter-count">{{ site.posts.size }}</span>
+      </button>
+    </li>
+    {{ filter_buttons }}
+  </ul>
+{% endif %}
 
 <div class="writing-list" aria-live="polite">
   {% for post in site.posts %}

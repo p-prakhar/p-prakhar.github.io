@@ -1,22 +1,50 @@
+// Long-form reading ------------------------------------------------------------
+
 .prose {
   color: var(--text);
 }
 
 .prose > * + * {
-  margin-top: 1.35em;
+  margin-top: 1.25em;
+}
+
+.prose > :first-child {
+  margin-top: 0;
+}
+
+.prose h1 {
+  margin-top: 2em;
+  font-size: var(--step-3);
+  letter-spacing: -0.015em;
 }
 
 .prose h2 {
-  margin-top: 2.4em;
-  margin-bottom: 0.7em;
-  font-size: clamp(1.8rem, 4vw, 2.5rem);
-  letter-spacing: -0.025em;
+  margin-top: 2.2em;
+  margin-bottom: 0.6em;
+  font-size: var(--step-3);
+  font-weight: 450;
+  letter-spacing: -0.015em;
 }
 
 .prose h3 {
-  margin-top: 2em;
-  margin-bottom: 0.6em;
-  font-size: clamp(1.35rem, 3vw, 1.75rem);
+  margin-top: 1.9em;
+  margin-bottom: 0.5em;
+  font-size: var(--step-2);
+  font-weight: 500;
+}
+
+.prose h4 {
+  margin-top: 1.6em;
+  margin-bottom: 0.4em;
+  font-family: var(--font-sans);
+  font-size: var(--step-0);
+  font-weight: 600;
+}
+
+.prose h2 + *,
+.prose h3 + *,
+.prose h4 + * {
+  margin-top: 0;
 }
 
 .prose p,
@@ -26,43 +54,80 @@
 
 .prose ul,
 .prose ol {
-  padding-left: 1.4rem;
+  padding-left: 1.25rem;
 }
 
 .prose li + li {
-  margin-top: 0.45rem;
+  margin-top: 0.4rem;
+}
+
+.prose li::marker {
+  color: var(--muted);
+}
+
+.prose strong {
+  font-weight: 600;
 }
 
 .prose blockquote {
-  padding: 0.2rem 0 0.2rem 1.25rem;
+  padding: 0 0 0 1.25rem;
   margin-inline: 0;
-  border-left: 2px solid var(--accent);
+  border-left: 1px solid var(--line-strong);
   color: var(--muted);
   font-style: italic;
 }
 
 .prose pre,
 .prose .highlight {
-  padding: 1rem;
+  padding: 1rem 1.1rem;
   border: 1px solid var(--line);
   border-radius: var(--radius);
-  background: var(--surface);
-  font-size: 0.84rem;
-  line-height: 1.55;
+  background: var(--sunk);
+  font-size: 0.85rem;
+  line-height: 1.6;
+}
+
+.prose .highlight pre {
+  padding: 0;
+  border: 0;
+  background: none;
 }
 
 .prose :not(pre) > code {
-  padding: 0.12em 0.3em;
-  border: 1px solid var(--line);
+  padding: 0.1em 0.3em;
   border-radius: 0.25rem;
-  background: var(--surface);
+  background: var(--sunk);
+}
+
+.prose img {
+  border-radius: var(--radius);
+}
+
+.prose figure {
+  margin-inline: 0;
+}
+
+.prose figcaption {
+  margin-top: 0.6rem;
+  color: var(--muted);
+  font-family: var(--font-sans);
+  font-size: var(--step--1);
 }
 
 .prose hr {
-  width: 5rem;
-  margin: 3rem auto;
+  width: 100%;
+  height: 1.5rem;
+  margin: 2.75rem auto;
   border: 0;
-  border-top: 1px solid var(--line);
+  background: none;
+  text-align: center;
+}
+
+.prose hr::after {
+  content: "✦  ·  ✦";
+  color: var(--muted);
+  font-size: 0.8rem;
+  letter-spacing: 0.4em;
 }
 
 .prose table {
@@ -71,18 +136,34 @@
   overflow-x: auto;
   border-collapse: collapse;
   font-family: var(--font-sans);
-  font-size: 0.85rem;
+  font-size: 0.875rem;
+  font-variant-numeric: tabular-nums;
 }
 
 .prose th,
 .prose td {
-  padding: 0.65rem 0.75rem;
-  border: 1px solid var(--line);
+  padding: 0.6rem 0.75rem;
+  border-bottom: 1px solid var(--line);
   text-align: left;
 }
 
+.prose th {
+  border-bottom-color: var(--line-strong);
+  font-weight: 600;
+}
+
+.prose .footnotes {
+  margin-top: 3rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: var(--step-0);
+}
+
+// Sections ----------------------------------------------------------------------
+
 .section {
-  margin-top: clamp(4rem, 10vw, 8rem);
+  margin-top: clamp(3.5rem, 9vw, 6.5rem);
 }
 
 .section:first-child {
@@ -91,21 +172,26 @@
 
 .section-heading {
   display: flex;
-  gap: 1rem;
+  flex-wrap: wrap;
+  gap: 0.25rem 1rem;
   align-items: baseline;
   justify-content: space-between;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
 }
 
 .section-heading h2 {
   margin: 0;
-  font-size: clamp(1.7rem, 4vw, 2.5rem);
-  letter-spacing: -0.025em;
+  font-size: var(--step-3);
+  font-weight: 400;
+  letter-spacing: -0.015em;
 }
 
 .section-heading a {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--tap);
   font-family: var(--font-sans);
-  font-size: 0.8rem;
+  font-size: 0.9375rem;
 }
 
 .writing-list,
@@ -114,21 +200,31 @@
   border-bottom: 1px solid var(--line);
 }
 
+.project-list .project-row:first-child,
+.writing-list .article-row:first-child {
+  border-top-color: var(--line-strong);
+}
+
+// Home --------------------------------------------------------------------------
+
 .home-intro {
   display: grid;
   gap: 2rem;
-  align-items: center;
-  min-height: 70vh;
+  align-items: end;
+  padding-bottom: clamp(1rem, 4vw, 2.5rem);
 }
 
 .home-intro h1 {
-  max-width: 13ch;
-  margin-bottom: 1.4rem;
-  font-size: clamp(2.75rem, 8vw, 6.75rem);
-  letter-spacing: -0.055em;
+  max-width: 15ch;
+  margin-bottom: 1.25rem;
+  font-size: var(--step-4);
+  font-weight: 400;
+  letter-spacing: -0.025em;
+  line-height: 1.02;
 }
 
 .home-intro h1 em {
+  white-space: nowrap;
   color: var(--accent);
   font-family: var(--font-accent);
   font-style: italic;
@@ -136,17 +232,33 @@
 }
 
 .home-intro__lede {
-  max-width: 38rem;
+  max-width: 34rem;
+  margin-bottom: 1.75rem;
   color: var(--muted);
-  font-size: clamp(1.05rem, 2vw, 1.3rem);
+  font-size: var(--step-1);
+  line-height: 1.5;
 }
 
 .home-intro__links {
   display: flex;
   flex-wrap: wrap;
-  gap: 1rem;
-  font-family: var(--font-sans);
-  font-size: 0.85rem;
+  gap: 0.75rem 1.25rem;
+  align-items: center;
+}
+
+.home-intro__links .text-link {
+  min-height: var(--tap);
+}
+
+@media (max-width: 45.99rem) {
+  .home-intro .star-note {
+    width: 9rem;
+    height: 6.5rem;
+  }
+
+  .home-intro .star-note svg {
+    width: 8rem;
+  }
 }
 
 .home-note {
@@ -159,25 +271,45 @@
   font-style: italic;
 }
 
+// Now: the latest note reads like a dated diary entry, not a card -------------
+
 .now-card,
 .current-update {
-  padding: clamp(1.25rem, 4vw, 2rem);
-  border: 1px solid var(--line);
-  border-left: 3px solid var(--accent);
-  border-radius: var(--radius);
-  background: var(--surface);
+  display: grid;
+  align-items: start;
+  gap: 0.25rem 1.25rem;
+  padding-block: 1.25rem 1.5rem;
+  border-top: 1px solid var(--line-strong);
+  border-bottom: 1px solid var(--line);
+}
+
+.now-card .eyebrow,
+.current-update .eyebrow {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  margin: 0.35rem 0 0;
+}
+
+.now-dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background: var(--accent);
 }
 
 .now-card h3,
 .prose .current-update h2 {
-  margin: 0 0 0.75rem;
+  margin: 0 0 0.6rem;
+  font-size: var(--step-2);
+  font-weight: 450;
 }
 
 .now-card h3 a,
 .current-update h2 a {
   color: var(--text);
   text-decoration: underline;
-  text-decoration-color: var(--line);
+  text-decoration-color: var(--line-strong);
 }
 
 .now-card h3 a:hover,
@@ -206,35 +338,66 @@
   padding-left: 0;
 }
 
+.now-list {
+  border-bottom: 0;
+}
+
 .now-entry {
   position: relative;
   display: grid;
-  gap: 0.6rem;
-  padding: 1.5rem 0 1.5rem 1.4rem;
+  gap: 0.25rem;
+  padding: 1.25rem 0 1.25rem 1.5rem;
   border-left: 1px solid var(--line);
+}
+
+.prose .now-entry {
+  margin-top: 0;
 }
 
 .now-entry::before {
   content: "";
   position: absolute;
-  top: 1.85rem;
-  left: -0.28rem;
+  top: 1.65rem;
+  left: -0.25rem;
   width: 0.5rem;
   height: 0.5rem;
   border-radius: 50%;
+  background: var(--background);
+  box-shadow: inset 0 0 0 1.5px var(--accent);
+}
+
+.now-entry--update::before {
   background: var(--accent);
 }
 
 .now-entry time {
   color: var(--muted);
   font-family: var(--font-sans);
-  font-size: 0.72rem;
+  font-size: var(--step--1);
+}
+
+.now-entry .eyebrow {
+  margin-bottom: 0.2rem;
 }
 
 .now-entry h2,
 .now-entry h3 {
   margin-top: 0;
-  margin-bottom: 0.35rem;
+  margin-bottom: 0.3rem;
+  font-size: var(--step-2);
+  font-weight: 450;
+}
+
+.now-entry h3 a {
+  color: var(--text);
+  text-decoration-color: var(--line-strong);
+}
+
+.now-entry p {
+  margin-bottom: 0.4rem;
+  color: var(--muted);
+  font-size: var(--step-0);
+  line-height: 1.5;
 }
 
 .current-update {
@@ -242,12 +405,23 @@
 }
 
 .current-update .post-meta {
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem;
+}
+
+// Work ----------------------------------------------------------------------------
+
+.work-nav {
+  position: sticky;
+  z-index: var(--z-header);
+  top: 0;
+  margin-inline: calc(-1 * var(--gutter));
+  padding-inline: var(--gutter);
+  background: var(--background);
 }
 
 .work-section {
-  padding-top: 3rem;
-  scroll-margin-top: 2rem;
+  padding-top: 2.75rem;
+  scroll-margin-top: 3rem;
 }
 
 .prose .work-section h2 {
@@ -255,28 +429,45 @@
 }
 
 .work-actions {
-  min-height: 2.75rem;
-  margin-bottom: 1rem;
+  display: flex;
+  min-height: var(--tap);
+  margin-bottom: 1.5rem;
 }
 
 .work-entry {
   display: grid;
-  gap: 0.6rem;
-  padding-block: 1.5rem;
+  gap: 0.35rem;
+  padding-block: 1.35rem;
   border-top: 1px solid var(--line);
+}
+
+.prose .work-entry {
+  margin-top: 0;
 }
 
 .work-entry__period,
 .work-entry__location {
-  margin-bottom: 0.2rem;
+  margin-bottom: 0.15rem;
   color: var(--muted);
   font-family: var(--font-sans);
-  font-size: 0.75rem;
+  font-size: var(--step--1);
+  font-variant-numeric: tabular-nums;
 }
 
 .prose .work-entry h3,
 .prose .project-row h3 {
   margin-top: 0;
+}
+
+.work-entry h3 {
+  margin-bottom: 0.3rem;
+  font-size: var(--step-2);
+  font-weight: 450;
+}
+
+.work-entry ul {
+  margin-top: 0.75rem;
+  font-size: var(--step-0);
 }
 
 .work-entry__summary {
@@ -286,53 +477,78 @@
 .inline-links {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.8rem;
+  gap: 0 1rem;
   margin-bottom: 0;
   list-style: none;
   font-family: var(--font-sans);
-  font-size: 0.8rem;
+  font-size: 0.875rem;
+}
+
+.inline-links a {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--tap);
+}
+
+.prose .inline-links li + li {
+  margin-top: 0;
 }
 
 .skill-groups {
   display: grid;
-  gap: 1rem;
+  gap: 0;
+  border-top: 1px solid var(--line);
 }
 
 .skill-group {
-  padding: 1rem;
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  background: var(--surface);
+  display: grid;
+  gap: 0.15rem 1.5rem;
+  padding-block: 0.9rem;
+  border-bottom: 1px solid var(--line);
 }
 
 .skill-group h3 {
-  margin-bottom: 0.45rem;
-  font-size: 1rem;
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: var(--step--1);
+  font-weight: 600;
 }
 
 .skill-group p {
   margin: 0;
   color: var(--muted);
-  font-size: 0.9rem;
+  font-size: var(--step-0);
 }
 
 .course-list {
   display: grid;
-  gap: 0.55rem 2rem;
+  gap: 0.45rem 2rem;
   padding: 0;
   list-style: none;
   color: var(--muted);
   font-family: var(--font-sans);
-  font-size: 0.85rem;
+  font-size: 0.9rem;
 }
 
+.prose .course-list li + li {
+  margin-top: 0;
+}
+
+// Tags page ---------------------------------------------------------------------
+
 .tag-group {
-  padding-block: 1.5rem;
+  padding-block: 1.25rem;
   border-top: 1px solid var(--line);
+  scroll-margin-top: 1.5rem;
+}
+
+.tag-group:target h2 {
+  color: var(--accent);
 }
 
 .prose .tag-group h2 {
-  margin: 0 0 0.75rem;
+  margin: 0 0 0.5rem;
+  font-size: var(--step-2);
 }
 
 .tag-group ul {
@@ -345,12 +561,77 @@
   display: flex;
   gap: 1rem;
   justify-content: space-between;
+  align-items: baseline;
+}
+
+.tag-group li a {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--tap);
 }
 
 .tag-group__date {
   color: var(--muted);
   font-family: var(--font-sans);
-  font-size: 0.75rem;
+  font-size: var(--step--1);
+  font-variant-numeric: tabular-nums;
+}
+
+// Post extras ---------------------------------------------------------------------
+
+.post-nav {
+  display: grid;
+  gap: 1rem;
+  width: min(100% - (2 * var(--gutter)), var(--measure));
+  margin: 2.5rem auto 0;
+  font-family: var(--font-sans);
+}
+
+.post-nav a {
+  display: grid;
+  gap: 0.15rem;
+  padding: 0.9rem 1rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  color: var(--text);
+  text-decoration: none;
+  transition: border-color var(--dur-fast) ease, transform var(--dur-press) var(--ease-out);
+}
+
+.post-nav a:active {
+  transform: scale(0.98);
+}
+
+.post-nav__label {
+  color: var(--muted);
+  font-size: var(--step--1);
+}
+
+.post-nav__title {
+  font-family: var(--font-serif);
+  font-size: var(--step-1);
+}
+
+.post-nav__next {
+  text-align: right;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .post-nav a:hover {
+    border-color: var(--line-strong);
+  }
+
+  .post-nav a:hover .post-nav__title {
+    color: var(--accent);
+  }
+}
+
+.post-footer__row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .lost-stars {
@@ -359,16 +640,15 @@
   margin-bottom: 2rem;
   color: var(--accent);
   font-size: clamp(1.25rem, 4vw, 2rem);
-  letter-spacing: 0.2em;
 }
 
-@media (min-width: 48rem) {
+@media (min-width: 46rem) {
   .home-intro {
-    grid-template-columns: minmax(0, 1.45fr) minmax(15rem, 0.55fr);
+    grid-template-columns: minmax(0, 1fr) 13rem;
   }
 
-  .home-intro .star-note-wrap {
-    border: 0;
+  .now-card {
+    grid-template-columns: 5.5rem minmax(0, 1fr);
   }
 
   .now-entry,
@@ -377,15 +657,69 @@
     gap: 1.5rem;
   }
 
-  .now-entry::before {
-    top: 2rem;
-  }
-
-  .skill-groups {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+  .skill-group {
+    grid-template-columns: 9rem minmax(0, 1fr);
+    gap: 1.5rem;
   }
 
   .course-list {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .post-nav {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .post-nav__next {
+    grid-column: 2;
+  }
+}
+
+.prose .filter-list li + li,
+.prose .jump-links li + li,
+.prose .tag-list li + li {
+  margin-top: 0;
+}
+
+.post-footer__links {
+  display: inline-flex;
+  gap: 1.25rem;
+}
+
+// Reading progress for long posts. Driven by the scroll timeline on the
+// compositor (no scroll listeners); browsers without support show nothing.
+.reading-progress {
+  display: none;
+}
+
+@supports (animation-timeline: scroll()) {
+  .reading-progress {
+    position: fixed;
+    z-index: var(--z-header);
+    top: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+    height: 2px;
+    background: var(--accent);
+    transform-origin: left center;
+    animation: reading-progress linear both;
+    animation-timeline: scroll(root block);
+  }
+
+  @keyframes reading-progress {
+    from {
+      transform: scaleX(0);
+    }
+
+    to {
+      transform: scaleX(1);
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reading-progress {
+    display: none !important;
   }
 }

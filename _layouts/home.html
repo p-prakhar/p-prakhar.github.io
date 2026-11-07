@@ -4,15 +4,15 @@ layout: default
 <div class="home shell-width">
   <section class="home-intro" aria-labelledby="home-title">
     <div class="home-intro__copy">
-      <p class="eyebrow">Systems · stories · small observations</p>
+      <p class="eyebrow">Prakhar Pandey, {{ site.data.profile.location | default: "Bengaluru" }}</p>
       <h1 id="home-title">
         I build systems, write down what <em>I notice</em>, and keep a little
         room for music.
       </h1>
       <p class="home-intro__lede">{{ site.data.profile.headline }}</p>
       <div class="home-intro__links">
-        <a href="{{ '/writing/' | relative_url }}">Read the writing</a>
-        <a href="{{ '/work/' | relative_url }}">See the work</a>
+        <a class="button" href="{{ '/writing/' | relative_url }}">Read the writing</a>
+        <a class="text-link" href="{{ '/work/' | relative_url }}">See the work</a>
       </div>
     </div>
     {% include star-note.html %}
@@ -25,7 +25,7 @@ layout: default
   <section class="section" aria-labelledby="latest-writing">
     <div class="section-heading">
       <h2 id="latest-writing">Latest writing</h2>
-      <a href="{{ '/writing/' | relative_url }}">All writing →</a>
+      <a href="{{ '/writing/' | relative_url }}">All writing</a>
     </div>
     <div class="writing-list">
       {% for post in site.posts limit: 3 %}
@@ -42,12 +42,14 @@ layout: default
     <section class="section now-preview" aria-labelledby="now-preview-title">
       <div class="section-heading">
         <h2 id="now-preview-title">Now</h2>
-        <a href="{{ '/now/' | relative_url }}">The timeline →</a>
+        <a href="{{ '/now/' | relative_url }}">Full timeline</a>
       </div>
       <article class="now-card">
-        <p class="eyebrow">{{ current_update.date | date: "%B %Y" }}</p>
+        <p class="eyebrow"><span class="now-dot" aria-hidden="true"></span><time datetime="{{ current_update.date | date_to_xmlschema }}">{{ current_update.date | date: "%b %Y" }}</time></p>
+        <div>
         <h3><a href="{{ current_update.url | relative_url }}">{{ current_update.title }}</a></h3>
         <div class="now-card__body">{{ current_update.content }}</div>
+        </div>
       </article>
     </section>
   {% endif %}
@@ -56,7 +58,7 @@ layout: default
   <section class="section" aria-labelledby="selected-work">
     <div class="section-heading">
       <h2 id="selected-work">Selected work</h2>
-      <a href="{{ '/work/#projects' | relative_url }}">Complete work →</a>
+      <a href="{{ '/work/#projects' | relative_url }}">All projects</a>
     </div>
     <div class="project-list">
       {% for project in selected_projects limit: 3 %}

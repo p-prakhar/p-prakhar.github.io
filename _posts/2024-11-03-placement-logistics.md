@@ -8,6 +8,8 @@ tags:
   - campus
   - placements
 description: A blog post to help coordinators prep for the logistics side of the endgame
+date: 2024-11-03
+published: true
 ---
 
 **Note:** We are taking a sample case of Google in order to understand the flow, needs, and dependencies.

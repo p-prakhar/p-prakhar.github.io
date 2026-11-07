@@ -4,7 +4,6 @@ date: YYYY-MM-DD
 location: "" # optional
 reading: "" # optional
 timeline_kind: update
-timeline_sort: "YYYY-MM-DD"
 tags:
   - life
 published: false

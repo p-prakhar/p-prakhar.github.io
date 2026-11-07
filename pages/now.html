@@ -10,11 +10,23 @@ permalink: /now/
 
 {% assign updates = site.updates | where_exp: "update", "update.published != false" | sort: "date" | reverse %}
 {% assign current = updates | first %}
-{% assign timeline = site.data.milestones | concat: site.posts | concat: updates | sort: "timeline_sort" | reverse %}
+{% comment %}
+  The newest update is already shown in full above, so the timeline starts
+  from the one before it.
+  Merge three sources into one dated timeline without asking authors to keep a
+  separate sort key in sync: build "YYYY-MM-DD|source|index" keys, sort them as
+  strings, then look each item up again.
+{% endcomment %}
+{% capture timeline_keys %}{% for event in site.data.milestones %}{{ event.date | date: "%Y-%m-%d" }}|m|{{ forloop.index0 }}
+{% endfor %}{% for event in site.posts %}{{ event.date | date: "%Y-%m-%d" }}|p|{{ forloop.index0 }}
+{% endfor %}{% for event in updates offset: 1 %}{{ event.date | date: "%Y-%m-%d" }}|u|{{ forloop.index }}
+{% endfor %}{% endcapture %}
+{% assign timeline_keys = timeline_keys | strip | newline_to_br | strip_newlines | split: "<br />" | sort | reverse %}
 
 {% if current %}
   <section class="current-update" aria-labelledby="current-update-title">
-    <p class="eyebrow">Current</p>
+    <p class="eyebrow"><span class="now-dot" aria-hidden="true"></span>Latest</p>
+    <div>
     <h2 id="current-update-title">
       <a href="{{ current.url | relative_url }}">{{ current.title }}</a>
     </h2>
@@ -26,6 +38,7 @@ permalink: /now/
       {% endif %}
     </p>
     <div>{{ current.content }}</div>
+    </div>
   </section>
 {% endif %}
 
@@ -34,8 +47,15 @@ permalink: /now/
     <h2 id="all-updates-title">Timeline</h2>
   </div>
   <div class="now-list">
-    {% for event in timeline %}
-      <article class="now-entry">
+    {% for key in timeline_keys %}
+      {% assign parts = key | strip | split: "|" %}
+      {% assign position = parts[2] | plus: 0 %}
+      {% case parts[1] %}
+        {% when "m" %}{% assign event = site.data.milestones[position] %}
+        {% when "p" %}{% assign event = site.posts[position] %}
+        {% else %}{% assign event = updates[position] %}
+      {% endcase %}
+      <article class="now-entry{% if event.timeline_kind == "update" %} now-entry--update{% endif %}">
         <time datetime="{{ event.date | date_to_xmlschema }}">
           {% if event.display_date %}{{ event.display_date }}{% else %}{{ event.date | date: "%b %Y" }}{% endif %}
         </time>

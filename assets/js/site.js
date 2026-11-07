@@ -194,6 +194,25 @@ function initPiano() {
   });
 }
 
+// The editor at /admin/ keeps its session in this origin's localStorage. When
+// it is present, reveal the owner's shortcuts (new update, edit this page).
+const EDITOR_SESSION_KEYS = ["sveltia-cms.user", "decap-cms-user"];
+
+function hasEditorSession(storage) {
+  try {
+    return EDITOR_SESSION_KEYS.some((key) => Boolean(storage?.getItem(key)));
+  } catch (_error) {
+    return false;
+  }
+}
+
+function initOwnerTools() {
+  if (!hasEditorSession(window.localStorage)) return;
+  document.querySelectorAll("[data-owner-only]").forEach((element) => {
+    element.hidden = false;
+  });
+}
+
 function initPrintControls() {
   document.querySelectorAll("[data-print]").forEach((button) => {
     button.hidden = false;
@@ -209,6 +228,7 @@ function initSite() {
     initStarNotes,
     initPiano,
     initPrintControls,
+    initOwnerTools,
   ].forEach((initializer) => {
     try {
       initializer();
@@ -225,6 +245,7 @@ if (typeof module !== "undefined" && module.exports) {
     dailyIndex,
     normalizeTheme,
     noteFrequency,
+    hasEditorSession,
   };
 }
 

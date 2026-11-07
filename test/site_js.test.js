@@ -8,6 +8,7 @@ const {
   dailyIndex,
   normalizeTheme,
   noteFrequency,
+  hasEditorSession,
 } = require("../assets/js/site.js");
 
 test("UTC day key ignores local timezone presentation", () => {
@@ -39,4 +40,15 @@ test("theme accepts only light and dark", () => {
 
 test("MIDI note 69 is concert A", () => {
   assert.equal(noteFrequency(69), 440);
+});
+
+test("owner tools appear only with an editor session", () => {
+  const storage = (values) => ({ getItem: (key) => values[key] ?? null });
+  assert.equal(hasEditorSession(storage({})), false);
+  assert.equal(hasEditorSession(storage({ "sveltia-cms.user": "{}" })), true);
+  assert.equal(hasEditorSession(null), false);
+  assert.equal(
+    hasEditorSession({ getItem() { throw new Error("blocked"); } }),
+    false
+  );
 });

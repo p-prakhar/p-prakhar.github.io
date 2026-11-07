@@ -9,8 +9,27 @@
       <a href="mailto:{{ site.author.email }}">Email</a>
       <a href="https://github.com/{{ site.author.github }}" rel="me">GitHub</a>
       <a href="https://www.linkedin.com/in/{{ site.author.linkedin }}/" rel="me">LinkedIn</a>
+      <a href="{{ '/feed.xml' | relative_url }}">RSS</a>
     </nav>
 
     {% include footer-piano.html %}
+
+    {% comment %}
+      Only visible on a device that has signed in to /admin/ (site.js checks
+      for the editor's saved session). Everyone else never sees it.
+    {% endcomment %}
+    <nav class="owner-bar" aria-label="Edit this site" data-owner-only hidden>
+      <span class="owner-bar__label">Signed in to the editor</span>
+      <a href="{{ '/admin/#/collections/updates/new' | relative_url }}">New update</a>
+      <a href="{{ '/admin/#/collections/posts/new' | relative_url }}">New post</a>
+      {% assign edit_path = nil %}
+      {% if page.collection == "posts" or page.collection == "updates" or page.collection == "projects" %}
+        {% assign edit_file = page.path | split: "/" | last | remove: ".markdown" | remove: ".md" %}
+        {% assign edit_path = page.collection | append: "/entries/" | append: edit_file %}
+      {% elsif page.path == "pages/about.md" %}
+        {% assign edit_path = "pages/entries/about" %}
+      {% endif %}
+      {% if edit_path %}<a href="{{ '/admin/#/collections/' | append: edit_path | relative_url }}">Edit this page</a>{% endif %}
+    </nav>
   </div>
 </footer>

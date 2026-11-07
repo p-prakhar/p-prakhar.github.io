@@ -5,7 +5,6 @@ description: "One sentence for previews and search."
 category: tech # tech, travel, life, or essay
 date: YYYY-MM-DD
 timeline_kind: writing
-timeline_sort: "YYYY-MM-DD"
 tags:
   - example
 published: false
