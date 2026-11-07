@@ -54,3 +54,12 @@ the site already met it and nothing changed.
 
 - The home headline and other personal copy were kept in Prakhar's words.
 - The Work page jump bar keeps all eight sections rather than merging any.
+
+## Follow-up: old-newspaper edition (2026-11-07)
+
+The palette and masthead changed after this audit (newsprint and a night
+edition, a blackletter masthead, ruled sections). The findings above still
+hold: tap targets, the single filled button, and the motion timings are
+unchanged. Text contrast was rechecked: body ink is 13.6:1 on newsprint, muted
+text is 6:1, and the spot red is 6.5:1. The dark edition has the same
+contrast levels.

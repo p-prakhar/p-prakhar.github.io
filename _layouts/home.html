@@ -4,7 +4,7 @@ layout: default
 <div class="home shell-width">
   <section class="home-intro" aria-labelledby="home-title">
     <div class="home-intro__copy">
-      <p class="eyebrow">Prakhar Pandey, {{ site.data.profile.location | default: "Bengaluru" }}</p>
+      <p class="eyebrow">From the desk of Prakhar Pandey</p>
       <h1 id="home-title">
         I build systems, write down what <em>I notice</em>, and keep a little
         room for music.
@@ -15,61 +15,68 @@ layout: default
         <a class="text-link" href="{{ '/work/' | relative_url }}">See the work</a>
       </div>
     </div>
-    {% include star-note.html %}
   </section>
 
   {% if content != "" %}
     <div class="prose home-note">{{ content }}</div>
   {% endif %}
 
-  <section class="section" aria-labelledby="latest-writing">
-    <div class="section-heading">
-      <h2 id="latest-writing">Latest writing</h2>
-      <a href="{{ '/writing/' | relative_url }}">All writing</a>
-    </div>
-    <div class="writing-list">
-      {% for post in site.posts limit: 3 %}
-        {% include article-row.html item=post %}
-      {% else %}
-        <p class="empty-note">The notebook is open. The first new piece is on its way.</p>
-      {% endfor %}
-    </div>
-  </section>
-
-  {% assign published_updates = site.updates | where_exp: "update", "update.published != false" | sort: "date" | reverse %}
-  {% assign current_update = published_updates | first %}
-  {% if current_update %}
-    <section class="section now-preview" aria-labelledby="now-preview-title">
-      <div class="section-heading">
-        <h2 id="now-preview-title">Now</h2>
-        <a href="{{ '/now/' | relative_url }}">Full timeline</a>
-      </div>
-      <article class="now-card">
-        <p class="eyebrow"><span class="now-dot" aria-hidden="true"></span><time datetime="{{ current_update.date | date_to_xmlschema }}">{{ current_update.date | date: "%b %Y" }}</time></p>
-        <div>
-        <h3><a href="{{ current_update.url | relative_url }}">{{ current_update.title }}</a></h3>
-        <div class="now-card__body">{{ current_update.content }}</div>
+  <div class="front-page">
+    <div class="front-page__main">
+      <section class="section" aria-labelledby="latest-writing">
+        <div class="section-heading">
+          <h2 id="latest-writing">Latest writing</h2>
+          <a href="{{ '/writing/' | relative_url }}">All writing</a>
         </div>
-      </article>
-    </section>
-  {% endif %}
+        <div class="writing-list">
+          {% for post in site.posts limit: 3 %}
+            {% include article-row.html item=post %}
+          {% else %}
+            <p class="empty-note">The notebook is open. The first new piece is on its way.</p>
+          {% endfor %}
+        </div>
+      </section>
 
-  {% assign selected_projects = site.projects | sort: "order" %}
-  <section class="section" aria-labelledby="selected-work">
-    <div class="section-heading">
-      <h2 id="selected-work">Selected work</h2>
-      <a href="{{ '/work/#projects' | relative_url }}">All projects</a>
+      {% assign selected_projects = site.projects | sort: "order" %}
+      <section class="section" aria-labelledby="selected-work">
+        <div class="section-heading">
+          <h2 id="selected-work">Selected work</h2>
+          <a href="{{ '/work/#projects' | relative_url }}">All projects</a>
+        </div>
+        <div class="project-list">
+          {% for project in selected_projects limit: 3 %}
+            {% include project-row.html project=project index=forloop.index %}
+          {% endfor %}
+        </div>
+      </section>
     </div>
-    <div class="project-list">
-      {% for project in selected_projects limit: 3 %}
-        {% include project-row.html project=project index=forloop.index %}
-      {% endfor %}
-    </div>
-  </section>
 
-  {% if site.data.music and site.data.music.size > 0 %}
-    <section class="section home-music" aria-label="Current music favourite">
-      {% include daily-music.html %}
-    </section>
-  {% endif %}
+    <div class="front-page__side">
+      {% assign published_updates = site.updates | where_exp: "update", "update.published != false" | sort: "date" | reverse %}
+      {% assign current_update = published_updates | first %}
+      {% if current_update %}
+        <section class="section now-preview" aria-labelledby="now-preview-title">
+          <div class="section-heading">
+            <h2 id="now-preview-title">Now</h2>
+            <a href="{{ '/now/' | relative_url }}">Full timeline</a>
+          </div>
+          <article class="now-card">
+            <p class="eyebrow"><span class="now-dot" aria-hidden="true"></span><time datetime="{{ current_update.date | date_to_xmlschema }}">{{ current_update.date | date: "%-d %b %Y" }}</time>{% if current_update.location %} · {{ current_update.location }}{% endif %}</p>
+            <div>
+              <h3><a href="{{ current_update.url | relative_url }}">{{ current_update.title }}</a></h3>
+              <div class="now-card__body">{{ current_update.content }}</div>
+            </div>
+          </article>
+        </section>
+      {% endif %}
+
+      <section class="section front-page__about" aria-labelledby="front-about-title">
+        <div class="section-heading">
+          <h2 id="front-about-title">About the author</h2>
+        </div>
+        <p>{{ site.data.profile.summary }}</p>
+        <a class="text-link" href="{{ '/about/' | relative_url }}">More about me</a>
+      </section>
+    </div>
+  </div>
 </div>

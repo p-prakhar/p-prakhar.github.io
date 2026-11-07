@@ -9,6 +9,7 @@ const {
   normalizeTheme,
   noteFrequency,
   hasEditorSession,
+  editionName,
 } = require("../assets/js/site.js");
 
 test("UTC day key ignores local timezone presentation", () => {
@@ -51,4 +52,9 @@ test("owner tools appear only with an editor session", () => {
     hasEditorSession({ getItem() { throw new Error("blocked"); } }),
     false
   );
+});
+
+test("the dateline names the edition after the theme", () => {
+  assert.equal(editionName("light"), "Morning edition");
+  assert.equal(editionName("dark"), "Night edition");
 });

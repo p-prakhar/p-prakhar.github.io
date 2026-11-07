@@ -176,14 +176,18 @@
   gap: 0.25rem 1rem;
   align-items: baseline;
   justify-content: space-between;
-  margin-bottom: 1rem;
+  margin-bottom: 0.25rem;
+  padding-top: 0.4rem;
+  border-top: var(--rule-heavy);
 }
 
 .section-heading h2 {
   margin: 0;
-  font-size: var(--step-3);
-  font-weight: 400;
-  letter-spacing: -0.015em;
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
 }
 
 .section-heading a {
@@ -202,7 +206,7 @@
 
 .project-list .project-row:first-child,
 .writing-list .article-row:first-child {
-  border-top-color: var(--line-strong);
+  border-top: 0;
 }
 
 // Home --------------------------------------------------------------------------
@@ -214,13 +218,19 @@
   padding-bottom: clamp(1rem, 4vw, 2.5rem);
 }
 
+.home-intro {
+  text-align: center;
+  justify-items: center;
+}
+
 .home-intro h1 {
-  max-width: 15ch;
-  margin-bottom: 1.25rem;
+  max-width: 18ch;
+  margin-inline: auto;
+  margin-bottom: 1rem;
   font-size: var(--step-4);
-  font-weight: 400;
+  font-weight: 700;
   letter-spacing: -0.025em;
-  line-height: 1.02;
+  line-height: 1;
 }
 
 .home-intro h1 em {
@@ -233,6 +243,8 @@
 
 .home-intro__lede {
   max-width: 34rem;
+  margin-inline: auto;
+  font-style: italic;
   margin-bottom: 1.75rem;
   color: var(--muted);
   font-size: var(--step-1);
@@ -240,6 +252,7 @@
 }
 
 .home-intro__links {
+  justify-content: center;
   display: flex;
   flex-wrap: wrap;
   gap: 0.75rem 1.25rem;
@@ -278,8 +291,11 @@
   display: grid;
   align-items: start;
   gap: 0.25rem 1.25rem;
-  padding-block: 1.25rem 1.5rem;
-  border-top: 1px solid var(--line-strong);
+  padding-block: 1rem 1.25rem;
+}
+
+.current-update {
+  border-top: var(--rule-heavy);
   border-bottom: 1px solid var(--line);
 }
 
@@ -643,13 +659,6 @@
 }
 
 @media (min-width: 46rem) {
-  .home-intro {
-    grid-template-columns: minmax(0, 1fr) 13rem;
-  }
-
-  .now-card {
-    grid-template-columns: 5.5rem minmax(0, 1fr);
-  }
 
   .now-entry,
   .work-entry {
@@ -722,4 +731,100 @@
   .reading-progress {
     display: none !important;
   }
+}
+
+// Front page: main column and a ruled side column, like a broadsheet.
+.home-intro {
+  display: grid;
+  padding-bottom: clamp(1.5rem, 4vw, 2.5rem);
+  border-bottom: 1px solid var(--line-strong);
+}
+
+.front-page {
+  display: grid;
+  gap: 0 2.5rem;
+}
+
+.front-page .section {
+  margin-top: clamp(2.5rem, 6vw, 3.5rem);
+}
+
+.front-page__about p {
+  margin: 0.75rem 0 0.25rem;
+  font-size: var(--step-0);
+  line-height: 1.55;
+}
+
+.now-card h3 {
+  font-weight: 700;
+}
+
+.now-card__body {
+  font-size: var(--step-0);
+  line-height: 1.55;
+}
+
+@media (min-width: 60rem) {
+  .front-page {
+    grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+  }
+
+  .front-page__side {
+    padding-left: 2.5rem;
+    border-left: 1px solid var(--line-strong);
+  }
+
+  .front-page__main .article-row {
+    grid-template-columns: 6.5rem minmax(0, 1fr);
+  }
+}
+
+// Newspaper headlines: heavy, tight.
+.page-intro h1,
+.post-header h1,
+.prose h2,
+.now-entry h3,
+.work-entry h3,
+.current-update h2 {
+  font-weight: 700;
+}
+
+.page-intro,
+.post-header {
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid var(--line-strong);
+}
+
+.post-byline {
+  margin: 0.75rem 0 0;
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+// Drop cap on the first paragraph of a post.
+.post-body > p:first-of-type::first-letter {
+  float: left;
+  margin: 0.08em 0.1em 0 0;
+  font-size: 3.6em;
+  font-weight: 700;
+  line-height: 0.82;
+}
+
+@media (min-width: 46rem) {
+  .post-body > p {
+    text-align: justify;
+    hyphens: auto;
+    -webkit-hyphens: auto;
+  }
+}
+
+.prose .eyebrow {
+  font-size: 0.75rem;
+}
+
+.page-intro + .prose > .current-update:first-child {
+  border-top: 0;
 }

@@ -70,12 +70,12 @@ class DesignContractTest < Minitest::Test
     refute_match(/navbar-toggler|hamburger|data-toggle=["']collapse/, header)
   end
 
-  def test_styles_define_both_approved_palettes_and_reduced_motion
+  def test_styles_define_both_newspaper_editions_and_reduced_motion
     styles = %w[
       _tokens.scss _base.scss _layout.scss _components.scss _content.scss _print.scss
     ].map { |name| read_site_file("_sass", name) }.join("\n")
 
-    %w[#f4efe5 #29251f #a4432d #191612 #eee5d8 #df8f71].each do |token|
+    %w[#ece3cf #1c1a16 #8f2a1c #161411 #e8dfcb #d9705a].each do |token|
       assert_includes styles.downcase, token
     end
     assert_match(/prefers-reduced-motion:\s*reduce/, styles)
