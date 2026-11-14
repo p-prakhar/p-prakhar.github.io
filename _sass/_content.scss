@@ -278,6 +278,71 @@
   margin-top: 2rem;
 }
 
+// Intent: a boxed notice under the masthead, like a small printed announcement.
+.intent-note {
+  max-width: 44rem;
+  margin: 2.5rem auto 0;
+  padding: 1.25rem 1.5rem 1.5rem;
+  border: 1px solid var(--line-strong);
+  outline: 1px solid var(--line-strong);
+  outline-offset: 3px;
+  text-align: center;
+}
+
+.intent-note .eyebrow {
+  margin: 0 0 0.5rem;
+}
+
+.intent-note h2 {
+  margin: 0 0 0.6rem;
+  font-size: var(--step-2);
+  font-weight: 600;
+  line-height: 1.15;
+  text-wrap: balance;
+}
+
+.intent-note h2 a {
+  color: var(--text);
+  text-decoration: underline;
+  text-decoration-color: var(--line-strong);
+  text-underline-offset: 0.15em;
+}
+
+.intent-note h2 a:hover,
+.intent-note h2 a:focus-visible {
+  color: var(--accent);
+}
+
+.intent-note__body {
+  max-width: 36rem;
+  margin: 0 auto 1rem;
+  color: var(--muted);
+  text-wrap: pretty;
+}
+
+.intent-note__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.25rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.intent-note__soon {
+  display: inline-flex;
+  gap: 0.5rem;
+  align-items: center;
+  min-height: var(--tap);
+  padding: 0 1.1rem;
+  border: 1px dashed var(--line-strong);
+  border-radius: var(--radius);
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
 .empty-note {
   padding-block: 1.5rem;
   color: var(--muted);

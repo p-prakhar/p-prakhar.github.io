@@ -116,3 +116,14 @@ authentication is the personal `p-prakhar` account—not a corporate account:
 gh auth status
 git push origin jekyll
 ```
+
+## Intent Launcher at /intent-launcher/
+
+`intent-launcher/` holds the built Intent Launcher site (its source lives in
+the HomeLauncher repo under `website/`; `python3 build.py --deploy` copies a
+new build here). Do not edit those pages by hand.
+
+The Google Play link is one value: `play_url` in `_data/intent.yml` (also in
+the phone editor under Site details). While it is empty, the home page note
+and every button on the Intent site read "Launching soon". Set it and they
+become "Get Intent".

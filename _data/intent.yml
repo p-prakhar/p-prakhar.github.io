@@ -1,0 +1,5 @@
+# Intent Launcher's Google Play link. This one value drives every "Get Intent"
+# button: on the home page note and on the Intent site at /intent-launcher/.
+# Leave it empty and the buttons read "Launching soon".
+# Example: "https://play.google.com/store/apps/details?id=com.prakhar.homelauncher"
+play_url: ""
