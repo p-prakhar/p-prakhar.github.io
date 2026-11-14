@@ -213,6 +213,15 @@ collections:
               - { name: title, label: Title, widget: string }
               - { name: artist, label: Artist, widget: string }
               - { name: url, label: Link, widget: string, required: false }
+      - name: intent
+        label: Intent Launcher
+        file: _data/intent.yml
+        fields:
+          - name: play_url
+            label: Google Play link
+            hint: Leave empty and every Get Intent button reads "Launching soon".
+            widget: string
+            required: false
       - name: profile
         label: Profile
         file: _data/profile.yml
