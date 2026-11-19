@@ -1,0 +1,86 @@
+---
+layout: null
+permalink: /intent-launcher/demo/
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#000000">
+  <meta name="description" content="Watch the Intent Launcher demo for Android.">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+  <title>Intent Launcher demo</title>
+  <link rel="canonical" href="https://p-prakhar.github.io/intent-launcher/demo/">
+  <link rel="icon" href="/intent-launcher/static/icon.svg">
+  <link rel="stylesheet" href="/intent-launcher/static/fonts/fonts.css">
+  <style>
+    :root {
+      color-scheme: dark;
+      color: #ecebe7;
+      background: #000;
+      font-family: "Hanken Grotesk", system-ui, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; }
+    main {
+      width: min(100%, 1060px);
+      margin-inline: auto;
+      padding: max(2rem, env(safe-area-inset-top)) max(1rem, env(safe-area-inset-right))
+        max(2rem, env(safe-area-inset-bottom)) max(1rem, env(safe-area-inset-left));
+    }
+    h1 {
+      font: 600 clamp(2.15rem, 5.5vw, 4rem)/1 "Bricolage Grotesque", system-ui, sans-serif;
+      letter-spacing: -.045em;
+      margin: 0 0 1.25rem;
+    }
+    video {
+      display: block;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border: 1px solid #262628;
+      border-radius: 14px;
+      background: #0e0e10;
+    }
+    .actions {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: .65rem 1.1rem;
+      margin-top: .9rem;
+    }
+    .actions a { color: inherit; }
+    .actions a:focus-visible { outline: 2px solid #6fc7b8; outline-offset: 4px; }
+    .download {
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
+      padding: .45rem .9rem;
+      border: 1px solid #444448;
+      border-radius: .7rem;
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .details { color: #a3a2a7; }
+    .about { margin-inline-start: auto; }
+    @media (max-width: 30rem) {
+      .about { flex-basis: 100%; margin-inline-start: 0; padding-block: .45rem; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Intent Launcher demo</h1>
+    <video controls playsinline preload="metadata" aria-label="Intent Launcher product demo"
+           poster="/assets/media/intent-launcher-demo/poster.jpg">
+      <source src="/assets/media/intent-launcher-demo/intent-launcher-demo.mp4" type="video/mp4">
+      <a href="/assets/media/intent-launcher-demo/intent-launcher-demo.mp4">Download the video</a>
+    </video>
+    <div class="actions">
+      <a class="download" href="/assets/media/intent-launcher-demo/intent-launcher-demo.mp4" download>Download MP4</a>
+      <span class="details">1:28 · 1080p</span>
+      <a class="about" href="/intent-launcher/">About Intent Launcher</a>
+    </div>
+  </main>
+</body>
+</html>
