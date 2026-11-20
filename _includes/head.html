@@ -30,4 +30,7 @@
   <meta name="theme-color" content="#161411" media="(prefers-color-scheme: dark)">
   <link rel="preload" href="{{ '/assets/fonts/Newsreader-Roman.woff2' | relative_url }}" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}?v={{ site.asset_version }}">
+  {% if page.layout == 'mixing' %}
+    <link rel="stylesheet" href="{{ '/assets/css/mixing.css' | relative_url }}?v={{ site.asset_version }}">
+  {% endif %}
 </head>

@@ -1,0 +1,49 @@
+---
+layout: default
+---
+<article class="mix shell-width">
+  <header class="mix-hero" aria-labelledby="mix-title">
+    <div class="mix-hero__copy">
+      <p class="mix-kicker">Bachelor’s thesis · IIT Guwahati · 2024</p>
+      <h1 id="mix-title">How a random<br>walk forgets</h1>
+      <p class="mix-lede">If you carve away half a hypercube, how long does a random walk take to forget where it started?</p>
+      <div class="mix-hero__links">
+        <a class="mix-button mix-button--primary" href="#cube">Explore the cube <span aria-hidden="true">↓</span></a>
+        <a class="mix-hero__research" href="#research">Jump to the research</a>
+      </div>
+    </div>
+    <figure class="mix-hero__figure">
+      <svg class="mix-hero-cube" viewBox="0 0 440 355" role="img" aria-labelledby="mix-hero-svg-title">
+        <title id="mix-hero-svg-title">The four retained vertices in a three-dimensional cube</title>
+        <path class="mix-hero-cube__ghost" d="M52 209 170 274 335 230 217 165Z M52 209V104L217 60 335 125V230 M170 274V169L335 125 M52 104 170 169 M217 60V165"/>
+        <path class="mix-hero-cube__good" d="M170 169 335 125 335 230 M335 125 217 60"/>
+        <circle class="mix-hero-cube__pulse" cx="335" cy="125" r="30"/>
+        <g class="mix-hero-cube__excluded">
+          <circle cx="52" cy="209" r="6"/><circle cx="170" cy="274" r="6"/>
+          <circle cx="217" cy="165" r="6"/><circle cx="52" cy="104" r="6"/>
+        </g>
+        <g class="mix-hero-cube__included">
+          <circle cx="170" cy="169" r="11"/><circle cx="217" cy="60" r="11"/>
+          <circle cx="335" cy="230" r="11"/><circle cx="335" cy="125" r="16"/>
+        </g>
+        <g class="mix-hero-cube__labels">
+          <text x="125" y="200">011</text><text x="213" y="39">101</text>
+          <text x="353" y="239">110</text><text x="361" y="122">111</text>
+        </g>
+        <path class="mix-hero-cube__axis" d="M56 304h328 M56 297v14 M384 297v14"/>
+        <text class="mix-hero-cube__legend" x="220" y="334" text-anchor="middle">4 allowed states out of 8</text>
+      </svg>
+      <figcaption>Keep a vertex if at least two of its three bits are 1.</figcaption>
+    </figure>
+  </header>
+  <nav class="mix-contents" aria-label="In this explainer">
+    <a href="#cube">The cube</a>
+    <a href="#walk">The walk</a>
+    <a href="#proof">The proof</a>
+    <a href="#mixing">Mixing time</a>
+    <a href="#experiments">Experiments</a>
+    <a href="#research">Research update</a>
+  </nav>
+  {{ content }}
+</article>
+<script type="module" src="{{ '/assets/js/mixing-page.mjs' | relative_url }}?v={{ site.asset_version }}"></script>

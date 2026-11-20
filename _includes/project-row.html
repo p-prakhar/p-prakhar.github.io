@@ -1,12 +1,16 @@
 {% assign project = include.project %}
 {% assign project_url = project.external_url | default: project.repository_url %}
 {% assign project_is_external = false %}
-{% if project_url %}
+{% if project.case_study %}
+  {% assign project_url = project.url | relative_url %}
+{% elsif project_url %}
   {% assign project_is_external = true %}
 {% else %}
   {% assign project_url = project.url | relative_url %}
 {% endif %}
-{% if project.repository_url %}
+{% if project.case_study %}
+  {% assign project_print_link = "Case study" %}
+{% elsif project.repository_url %}
   {% assign project_print_link = "Source code" %}
 {% elsif project.external_url %}
   {% assign project_print_link = "Project link" %}
