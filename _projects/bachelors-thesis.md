@@ -11,15 +11,38 @@ tools:
   - Research
 repository_url: "https://github.com/p-prakhar/LazyRandomWalk"
 description: >-
-  An interactive guide to our bachelor's thesis on mixing under monotone
-  censoring, from a single bit flip to the sharp mixing-time bound.
+  What our B.Tech thesis proved and tested about random walks, with
+  interactive examples that start from a single switch.
 ---
+
+<section class="mix-chapter mix-contribution" id="contributions" aria-labelledby="contributions-heading">
+  <div class="mix-copy">
+    <h2 id="contributions-heading">What we contributed</h2>
+    <p>Pratham Pekamwar and I did this B.Tech project at IIT Guwahati in 2024 under Dr. Benny George K.</p>
+    <dl class="mix-findings">
+      <div>
+        <dt>We proved equal odds at equilibrium</dt>
+        <dd>In the walk we studied, each allowed position has the same long-run chance of being occupied. Changing the chance of deliberately staying put leaves those equilibrium odds the same.</dd>
+      </div>
+      <div>
+        <dt>We built a Python simulator</dt>
+        <dd>It tracks the chance of being at every position after each step. We used it to measure how quickly those chances approach equal odds under different rules.</dd>
+      </div>
+      <div>
+        <dt>We tested what could change the speed</dt>
+        <dd>Changing how often the walker stays put changed the speed. We also expected more base points, the positions that generate a shape, to slow mixing. Across our runs, the number of base points showed no consistent pattern.</dd>
+      </div>
+    </dl>
+    <p>Our project investigated Ding and Mossel’s prediction that the worst-case mixing time grows like <var>n</var> log <var>n</var>, where <var>n</var> is the number of bits. A 2026 preprint proved that prediction, including the half-cube case we studied. <a href="#research">Read the research update</a>.</p>
+  </div>
+</section>
 
 <section class="mix-chapter" id="cube" aria-labelledby="cube-heading">
   <div class="mix-copy">
-    <h2 id="cube-heading">From bits to a cube</h2>
-    <p>One bit gives you two points, 0 and 1. Add a bit and you get two copies of that line, joined into a square. Add another and you get a cube. In <var>n</var> dimensions, each of the 2<sup><var>n</var></sup> vertices is a binary string. An edge flips exactly one bit.</p>
-    <p>An <strong>upward-closed</strong> set keeps every vertex you can reach from an allowed vertex by turning 0s into 1s. Its <strong>minimal vertices</strong> are the allowed vertices with no smaller allowed vertex below them. These are the base points in our report.</p>
+    <h2 id="cube-heading">Start with a switch</h2>
+    <p>Imagine walking through a network of rooms and choosing each move by chance. Run the walk many times from the same room and record where each run ends. After enough steps, the chances of ending in each room can look almost the same whichever room you started in. The time it takes to get that close is the <strong>mixing time</strong>.</p>
+    <p>Now label the rooms with light switches. One switch has two settings, 0 for off and 1 for on. Two switches give four settings, <code>00</code>, <code>01</code>, <code>10</code>, and <code>11</code>. Connect two settings whenever one flip takes you from one to the other. That makes a square. With three switches you get a cube. With <var>n</var> switches you get a <strong>hypercube</strong> with 2<sup><var>n</var></sup> positions.</p>
+    <p>Now keep only some positions. For example, require at least two switches to be on. Turning on another switch preserves that rule, so the set is <strong>upward-closed</strong>. Its <strong>base points</strong> are the allowed settings where turning off any one of the on switches would break the rule. You can generate the whole set by turning on switches from those base points.</p>
   </div>
   <div class="mix-lab mix-lab--split" data-enhanced data-cube hidden>
     <div class="mix-board mix-board--graph" data-cube-graph></div>
@@ -49,7 +72,7 @@ description: >-
 <section class="mix-chapter" id="walk" aria-labelledby="walk-heading">
   <div class="mix-copy">
     <h2 id="walk-heading">Take a step, or stay put</h2>
-    <p>Pick one coordinate uniformly. With probability <var>ℓ</var>, stay where you are. Otherwise, try the flip. If that flip leaves the allowed set, stay at the original vertex. The next step uses only the current state, so this is a Markov chain.</p>
+    <p>Pick one switch at random, giving each switch the same chance. With probability <var>ℓ</var>, stay where you are. Otherwise, try to flip it. If the new setting breaks the rule, stay where you were anyway. Skipping the forbidden move is the <strong>censoring</strong> in our thesis title. The next step only uses the current setting, which makes this a Markov chain.</p>
     <p>At <var>ℓ</var> = 1/2, you can think of the same rule as picking a coordinate and giving it a fresh fair bit. A refresh can leave the bit unchanged. Here the walk starts at <code>011</code>.</p>
   </div>
   <div class="mix-lab mix-lab--split" data-enhanced data-walk hidden>
@@ -76,7 +99,8 @@ description: >-
 <section class="mix-chapter" id="proof" aria-labelledby="proof-heading">
   <div class="mix-copy">
     <h2 id="proof-heading">Why every vertex gets the same share</h2>
-    <p>In the majority set, <code>011</code> holds the walker with probability 5/6, while <code>111</code> holds it with probability 1/2. Yet they each have stationary probability 1/4. To see why, look at the two directions of a single edge.</p>
+    <p>Suppose we spread many walkers across the allowed positions and give them one step. If the fractions at each position stay the same, those fractions form a <strong>stationary distribution</strong>.</p>
+    <p>In our example, a walker at <code>011</code> stays there with probability 5/6. At <code>111</code> it stays with probability 1/2. Yet at equilibrium, a quarter of the walkers are at each position. Look at the two directions of a single edge to see why.</p>
   </div>
   <div class="mix-lab mix-lab--split" data-enhanced data-balance hidden>
     <div class="mix-board mix-board--graph" data-balance-graph></div>
@@ -208,7 +232,7 @@ description: >-
 <section class="mix-chapter mix-research" id="research" aria-labelledby="research-heading">
   <div class="mix-copy">
     <h2 id="research-heading">The question we left open</h2>
-    <p>Pratham Pekamwar and I studied this problem for our 2024 B.Tech project at IIT Guwahati under Dr. Benny George K. We proved uniform stationarity for the walk, surveyed the available techniques, and explored laziness and subset geometry numerically. Our goal was to understand whether a large monotone subset could retain the full cube’s mixing scale.</p>
+    <p>Our simulations explored which features changed how quickly the walk mixed. The question from Ding and Mossel asks for a guarantee across every upward-closed subset that keeps a fixed fraction of the cube. We focused on sets that keep at least half.</p>
   </div>
   <ol class="mix-timeline">
     <li><time datetime="2014">2014</time><strong>O(<var>n</var><sup>3</sup>)</strong><p>Ding and Mossel give the first bound and ask whether the full-cube order still holds.</p><a href="https://doi.org/10.1214/ECP.v19-3157">Read the paper</a></li>

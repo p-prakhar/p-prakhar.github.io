@@ -120,6 +120,13 @@
 .mix-copy { max-width: var(--mix-measure); }
 .mix-copy--follow { margin-top: 1rem; }
 
+.mix-contribution { padding-top: clamp(2.5rem, 5vw, 4rem); }
+.mix-findings { margin: 1.15rem 0; }
+.mix-findings div { border-top: 1px solid var(--line); padding: .8rem 0; }
+.mix-findings div:last-child { border-bottom: 1px solid var(--line); }
+.mix-findings dt { font: 700 .92rem/1.4 var(--font-sans); }
+.mix-findings dd { margin: .25rem 0 0; font-size: clamp(1rem, 1.2vw, 1.15rem); line-height: 1.5; }
+
 .mix-chapter h2 {
   margin-bottom: .57em;
   font: 560 clamp(2rem, 4.6vw, 3.8rem)/.98 var(--font-serif);
