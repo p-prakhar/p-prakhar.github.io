@@ -42,7 +42,7 @@ jobs:
       - name: Run content and helper tests
         run: bundle exec ruby -Itest -e 'Dir["test/*_test.rb"].sort.each { |file| require File.expand_path(file) }'
       - name: Run browser-script unit tests
-        run: node --test test/site_js.test.js
+        run: node --test test/site_js.test.js test/mixing_model_test.mjs
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v5

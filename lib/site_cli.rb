@@ -125,7 +125,7 @@ module SiteCLI
       ensure_no_arguments(arguments)
       commands = [
         [RbConfig.ruby, "-Itest", "-e", RUBY_TEST_RUNNER],
-        ["node", "--test", "test/site_js.test.js"],
+        ["node", "--test", "test/site_js.test.js", "test/mixing_model_test.mjs"],
         [
           "bundle", "exec", "jekyll", "build",
           "--strict_front_matter", "--safe", "--trace"
